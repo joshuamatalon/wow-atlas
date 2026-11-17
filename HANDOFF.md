@@ -50,3 +50,6 @@ State at 2026-11-17 12:35, stage 6 of 6 reached once, with the open items below.
 
 ## Facts kept out of the page
 `work/ledger.md` (one line per fact and its source) and `work/research/fights.md` (every claim tagged with its source).
+
+## Changes after the first handoff
+- 2026-11-17 13:45: a tap on empty map space (or Escape) closes the stop card and flies back to the overview. A drag still turns the map. `python -I tools/tap_test.py BASE_URL` checks it in Chromium and WebKit.
