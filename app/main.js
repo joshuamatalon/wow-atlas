@@ -167,7 +167,7 @@ function makeStage() {
   controls.enabled = false;
   const composer = new EffectComposer(renderer);
   composer.addPass(new RenderPass(scene, camera));
-  const bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth / 2, innerHeight / 2), 0.85, 0.5, 0.08);
+  const bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth / 2, innerHeight / 2), 0.55, 0.45, 0.22);
   composer.addPass(bloom);
   composer.addPass(new OutputPass());
   return { scene, camera, controls, composer, bloom };
@@ -217,13 +217,13 @@ async function boot() {
   // map
   const gltf = await loader.loadAsync(D.map.model);
   mapRoot = new THREE.Group();
-  const layerColor = { terrain: new THREE.Color('#2a7f94'), undercity: HOLO, ruins: new THREE.Color('#9ff6ff') };
+  const layerColor = { terrain: new THREE.Color('#1f6f86'), undercity: HOLO, ruins: new THREE.Color('#9ff6ff') };
   gltf.scene.updateMatrixWorld(true);
   gltf.scene.traverse((o) => { if (o.isMesh) o.name = o.name || o.parent?.name; });
   for (const child of [...gltf.scene.children]) {
     const name = child.name || '';
     const col = layerColor[name] || HOLO;
-    const opts = name === 'terrain' ? { base: 0.035, rim: 0.35, edgeOpacity: 0.12, edgeAngle: 50 } : { base: 0.07, rim: 0.9, edgeOpacity: 0.5 };
+    const opts = name === 'terrain' ? { base: 0.012, rim: 0.16, edgeOpacity: 0.07, edgeAngle: 55 } : { base: 0.025, rim: 0.55, edgeOpacity: 0.32 };
     const h = hologramize(child, col, opts); h.name = name; mapRoot.add(h);
   }
   map.scene.add(mapRoot);
@@ -238,6 +238,8 @@ async function boot() {
   map.controls.maxDistance = 1400; map.controls.minDistance = 25;
   map.controls.maxPolarAngle = Math.PI * 0.49;
   setPart(D.map.startPart ?? 1, false);
+  if (params.has('cam')) { const v = params.get('cam').split(',').map(Number); map.camera.position.set(v[0], v[1], v[2]); map.controls.target.set(v[3], v[4], v[5]); }
+  if (params.has('part')) setPart(+params.get('part'), false);
   buildBestiary();
   buildBossList();
   setView(params.get('v') || 'map');
@@ -333,14 +335,14 @@ const pad = new THREE.Group();
   const cone = new THREE.Mesh(new THREE.CylinderGeometry(1.0, 1.0, 2.2, 64, 1, true), new THREE.ShaderMaterial({
     uniforms: { uTime }, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide,
     vertexShader: 'varying vec2 vUv; void main(){vUv=uv; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}',
-    fragmentShader: 'uniform float uTime; varying vec2 vUv; void main(){ float a = (1.0 - vUv.y) * 0.16 * (0.7 + 0.3*sin(vUv.y*40.0 - uTime*3.0)); gl_FragColor = vec4(0.38,0.94,1.0,a);}',
+    fragmentShader: 'uniform float uTime; varying vec2 vUv; void main(){ float a = (1.0 - vUv.y) * 0.07 * (0.7 + 0.3*sin(vUv.y*40.0 - uTime*3.0)); gl_FragColor = vec4(0.38,0.94,1.0,a);}',
   }));
   cone.position.y = 1.1; pad.add(cone);
   beastScene.add(pad);
 }
 beast.camera.position.set(0, 1.6, 5.2); beast.controls.target.set(0, 1, 0);
 beast.controls.enablePan = false; beast.controls.minDistance = 1.5; beast.controls.maxDistance = 14;
-beast.bloom.strength = 0.35; beast.bloom.threshold = 0.6;
+beast.bloom.strength = 0.25; beast.bloom.threshold = 0.85;
 
 function buildBestiary() {
   const grid = $('#grid'); grid.innerHTML = '';
@@ -506,6 +508,8 @@ function resize() {
   const w = innerWidth, h = innerHeight;
   renderer.setSize(w, h, false);
   for (const st of [map, beast]) { st.camera.aspect = w / h; st.camera.updateProjectionMatrix(); st.composer.setSize(w, h); st.composer.setPixelRatio(Math.min(devicePixelRatio, 2)); }
+  if (w < 900) beast.camera.setViewOffset(w, h, 0, h * 0.2, w, h); else beast.camera.setViewOffset(w, h, -w * 0.16, 0, w, h);
+  if (w >= 900) map.camera.setViewOffset(w, h, w * 0.12, 0, w, h); else map.camera.setViewOffset(w, h, 0, h * 0.12, w, h);
 }
 addEventListener('resize', resize); resize();
 function tick() {

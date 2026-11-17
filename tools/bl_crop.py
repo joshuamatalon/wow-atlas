@@ -11,6 +11,7 @@ def wbb(o):
     pts = [o.matrix_world @ Vector(c) for c in o.bound_box]
     return [min(p[i] for p in pts) for i in range(3)], [max(p[i] for p in pts) for i in range(3)]
 
+bpy.context.view_layer.update()
 meshes = [o for o in bpy.data.objects if o.type == "MESH"]
 uc = [o for o in meshes if o.name.startswith("undercity")][0]
 lo, hi = wbb(uc)
@@ -28,12 +29,16 @@ for o in meshes:
     keep.append(o)
 
 info["kept"] = []
+bpy.ops.object.select_all(action="DESELECT")
 for o in keep:
-    # apply transforms so vertices are in world space
     o.data = o.data.copy()
-    o.data.transform(o.matrix_world)
-    o.parent = None
-    o.matrix_world = __import__("mathutils").Matrix.Identity(4)
+    o.select_set(True)
+bpy.context.view_layer.objects.active = keep[0]
+bpy.ops.object.parent_clear(type="CLEAR_KEEP_TRANSFORM")
+bpy.ops.object.transform_apply(location=True, rotation=True, scale=True)
+bpy.context.view_layer.update()
+for o in keep:
+    info.setdefault("applied", []).append([o.name, [list(v) for v in wbb(o)]])
     bm = bmesh.new(); bm.from_mesh(o.data)
     if o.name.startswith("adt_"):
         dead = [f for f in bm.faces if not (x0 <= f.calc_center_median().x <= x1 and y0 <= f.calc_center_median().y <= y1)]
