@@ -237,6 +237,7 @@ async function boot() {
   const c = new THREE.Vector3().fromArray(D.map.center);
   map.controls.target.copy(c);
   map.camera.position.copy(c).add(new THREE.Vector3().fromArray(D.map.camOffset));
+  overview = { pos: map.camera.position.clone(), target: c.clone() };
   map.controls.maxDistance = 1400; map.controls.minDistance = 25;
   map.controls.maxPolarAngle = Math.PI * 0.49;
   setPart(D.map.startPart ?? 1, false);
@@ -252,6 +253,7 @@ async function boot() {
   buildBestiary();
   buildBossList();
   setView(params.get('v') || 'map');
+  stopIdx = 0; leaveStop(); flight = null;
   if (params.has('stop')) gotoStop(+params.get('stop'));
   if (THUMB) { document.querySelectorAll('header,#tabs,.view,#scan').forEach((e) => e.style.display = 'none'); document.body.style.background = 'transparent'; document.documentElement.style.background = 'transparent'; }
   if (params.has('beast')) openBeast(params.get('beast'));
@@ -316,6 +318,18 @@ function gotoStop(i) {
   else if (chips) h += `<div class="chips">${chips}</div>`;
   card.innerHTML = h; card.classList.remove('hidden'); card.scrollTop = 0;
 }
+let overview = null;
+function leaveStop() {
+  if (stopIdx < 0) return;
+  stopIdx = -1;
+  $('#stopcard').classList.add('hidden');
+  markers.forEach((m) => { m.userData.sprite.userData.on = false; });
+  route.userData.mat.uniforms.uProg.value = 0;
+  $('#stopn').textContent = 'The whole route';
+  $('#stopname').textContent = 'Tap a number or press \u203A';
+  if (overview) flyTo(map, overview.pos, overview.target);
+}
+addEventListener('keydown', (e) => { if (e.key === 'Escape' && view === 'map') leaveStop(); });
 $('#prev').onclick = () => gotoStop(stopIdx < 0 ? 0 : stopIdx - 1);
 $('#next').onclick = () => gotoStop(stopIdx + 1);
 document.addEventListener('click', (e) => {
@@ -344,7 +358,8 @@ canvas.addEventListener('pointerup', (e) => {
     const dx = (p.x - v.x) * innerWidth / 2, dy = (p.y - v.y) * innerHeight / 2;
     const d = Math.hypot(dx, dy); if (d < bestD) { bestD = d; best = m; }
   }
-  if (best && view === 'map') gotoStop(best.userData.idx);
+  if (view !== 'map') return;
+  if (best) gotoStop(best.userData.idx); else leaveStop();
 });
 
 // ---------- bestiary ----------
