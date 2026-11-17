@@ -25,7 +25,7 @@ renderer.localClippingEnabled = true;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 const loader = new GLTFLoader();
 loader.setMeshoptDecoder(MeshoptDecoder);
-const clock = new THREE.Clock();
+let lastT = performance.now();
 const uTime = { value: 0 };
 
 // ---------- hologram materials ----------
@@ -253,7 +253,7 @@ async function boot() {
   buildBossList();
   setView(params.get('v') || 'map');
   if (params.has('stop')) gotoStop(+params.get('stop'));
-  if (THUMB) { document.querySelectorAll('header,#tabs,.view,#scan').forEach((e) => e.style.display = 'none'); document.body.style.background = 'transparent'; }
+  if (THUMB) { document.querySelectorAll('header,#tabs,.view,#scan').forEach((e) => e.style.display = 'none'); document.body.style.background = 'transparent'; document.documentElement.style.background = 'transparent'; }
   if (params.has('beast')) openBeast(params.get('beast'));
   if (params.has('boss')) openBoss(params.get('boss'));
   $('#loading').style.opacity = 0; setTimeout(() => $('#loading').classList.add('hidden'), 500);
@@ -547,7 +547,7 @@ function resize() {
 addEventListener('resize', resize); resize();
 function tick() {
   requestAnimationFrame(tick);
-  const dt = Math.min(clock.getDelta(), 0.05);
+  const now = performance.now(); const dt = Math.min((now - lastT) / 1000, 0.05); lastT = now;
   uTime.value += dt;
   const st = currentStage();
   if (active !== st) { if (active) active.controls.enabled = false; st.controls.enabled = true; active = st; }
