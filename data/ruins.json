@@ -1,6 +1,1674 @@
-{"dungeon":{"name":"Ruins of Lordaeron"},
- "parts":[{"name":"The Undercity","short":"Below","clipAbove":40},{"name":"The Ruins","short":"Above"}],
- "map":{"model":"models/map.glb","center":[392,60,1558],"camOffset":[0,520,-420],"gridRadius":420,"floorY":-90,"startPart":1},
- "stops":[{"kind":"entrance","part":1,"pos":[392,62,1700],"title":"Test stop","text":["Proof of path."]},{"kind":"boss","part":1,"pos":[392,62,1558],"title":"Test boss","boss":"witherfang","enemies":["witherfang"]}],
- "enemies":[{"slug":"witherfang","name":"Witherfang","boss":true,"abilities":[{"name":"Leech Poison","icon":136067,"line":"test"}]}],
- "bosses":[{"slug":"witherfang","name":"Witherfang","room":{"center":[392,62,1558],"radius":60},"tankSpot":[392,62,1550],"partySpot":[392,62,1580],"steps":["One.","Two."],"shapes":[{"type":"circle","r":10,"at":[392,62,1558],"step":0}]}]}
+{
+ "dungeon": {
+  "name": "Ruins of Lordaeron",
+  "levels": "15 to 22"
+ },
+ "parts": [
+  {
+   "name": "The Ruins",
+   "short": "Ruins",
+   "clipBelow": 40
+  }
+ ],
+ "map": {
+  "model": "models/map.glb",
+  "center": [
+   241,
+   62,
+   1607
+  ],
+  "camOffset": [
+   0,
+   760,
+   -600
+  ],
+  "gridRadius": 420,
+  "floorY": 30,
+  "startPart": 0,
+  "groundMax": 76
+ },
+ "stops": [
+  {
+   "kind": "entrance",
+   "part": 0,
+   "pos": [
+    240.7,
+    62.28,
+    1848.6
+   ],
+   "title": "The North Gate",
+   "text": [
+    "You enter the old capital at its north gate. The streets run south in a U, and the group walks them clockwise, east side first."
+   ],
+   "enemies": []
+  },
+  {
+   "kind": "quest",
+   "part": 0,
+   "pos": [
+    198.0,
+    70.41,
+    1795.2
+   ],
+   "title": "Captain Truman",
+   "text": [
+    "Alliance players take Abominable Creatures here and bring the Head of the Baron back before leaving.",
+    "Bloodied Insignia drops from the undead, and Stormwind takes ten."
+   ],
+   "enemies": [
+    "captain-truman"
+   ]
+  },
+  {
+   "kind": "pack",
+   "part": 0,
+   "pos": [
+    48.7,
+    61.66,
+    1759.7
+   ],
+   "title": "King's Alley",
+   "text": [
+    "Take the stairs east. Spider packs fill the alley in twos and threes, and fast spiders patrol it.",
+    "Pull each pack back up the stairs so no patrol joins."
+   ],
+   "enemies": [
+    "spider",
+    "deep-widow",
+    "broodling",
+    "broodwidow"
+   ]
+  },
+  {
+   "kind": "quest",
+   "part": 0,
+   "pos": [
+    78.5,
+    61.66,
+    1761.8
+   ],
+   "title": "Crest of Lordaeron",
+   "text": [
+    "The Crest hangs on one of five walls each run. Check the top of this tower, the crypt by the south-east fountain, Bjork's tower, the wall behind his road and the Market Street tower."
+   ],
+   "enemies": []
+  },
+  {
+   "kind": "pack",
+   "part": 0,
+   "pos": [
+    48.7,
+    61.66,
+    1699.2
+   ],
+   "title": "The Broken Tree",
+   "text": [
+    "A Tarantula and two Venom Lurkers wait behind a broken tree. The Tarantula webs one player for 10 seconds.",
+    "Pull the pack around the corner so the web lands near your healer."
+   ],
+   "enemies": [
+    "tarantula",
+    "venom-lurker"
+   ]
+  },
+  {
+   "kind": "boss",
+   "part": 0,
+   "pos": [
+    48.7,
+    61.66,
+    1648.0
+   ],
+   "title": "Witherfang",
+   "text": [
+    "Witherfang walks the alley with two spiders. Wait until her path takes her clear of the other packs, then pull."
+   ],
+   "enemies": [
+    "witherfang",
+    "broodling"
+   ],
+   "say": "Wait for her to come to us. Spiders first, then the boss.",
+   "boss": "witherfang"
+  },
+  {
+   "kind": "hazard",
+   "part": 0,
+   "pos": [
+    48.7,
+    61.61,
+    1578.3
+   ],
+   "title": "Banshee Patrol",
+   "text": [
+    "Two Shrieking Banshees patrol south of Witherfang. Each one silences a caster for 4 seconds.",
+    "Kill a banshee first in any pull it joins."
+   ],
+   "enemies": [
+    "shrieking-banshee",
+    "wailing-banshee"
+   ],
+   "say": "Banshee first."
+  },
+  {
+   "kind": "pack",
+   "part": 0,
+   "pos": [
+    112.7,
+    61.61,
+    1542.8
+   ],
+   "title": "Skeleton Watch",
+   "text": [
+    "Skeletons stand in threes at the south end of the alley. Kill the mage first, because its frost armor slows your swings."
+   ],
+   "enemies": [
+    "skeletal-soldier",
+    "skeletal-mage",
+    "stone-watcher"
+   ],
+   "say": "Mage first, then soldiers."
+  },
+  {
+   "kind": "event",
+   "part": 0,
+   "pos": [
+    146.8,
+    74.39,
+    1534.2
+   ],
+   "title": "Three Ghosts",
+   "text": [
+    "Three Ghostly Citizens stand where the street bends. Turn right here, through the passage, into the Baron's hallway.",
+    "The ghosts stay calm unless someone hits them."
+   ],
+   "enemies": [
+    "ghostly-citizen"
+   ]
+  },
+  {
+   "kind": "pack",
+   "part": 0,
+   "pos": [
+    158.9,
+    61.61,
+    1507.2
+   ],
+   "title": "The Baron's Hallway",
+   "text": [
+    "Mangled Cadavers guard the hallway. Their Cadaver Worms stop your health regenerating for 10 minutes.",
+    "Get the disease cured before you pull the Baron."
+   ],
+   "enemies": [
+    "mangled-cadaver",
+    "skeletal-soldier"
+   ],
+   "say": "Cure my disease before the boss."
+  },
+  {
+   "kind": "boss",
+   "part": 0,
+   "pos": [
+    171.7,
+    61.61,
+    1477.4
+   ],
+   "title": "The Baron",
+   "text": [
+    "The Baron blocks a hole in the wall. Clear the hallway, put your back to the wall and pull."
+   ],
+   "enemies": [
+    "the-baron"
+   ],
+   "say": "He knocks me out and turns on someone. Run to me and I'll taunt him back.",
+   "boss": "the-baron"
+  },
+  {
+   "kind": "event",
+   "part": 0,
+   "pos": [
+    190.9,
+    61.61,
+    1446.8
+   ],
+   "title": "The Pillar Jump",
+   "text": [
+    "A broken pillar leans on the low wall behind the Baron. Jump onto it and over the wall to skip the packs in the street.",
+    "Hunters and warlocks dismiss pets first."
+   ],
+   "enemies": []
+  },
+  {
+   "kind": "hazard",
+   "part": 0,
+   "pos": [
+    258.4,
+    62.21,
+    1411.2
+   ],
+   "title": "The South Edge",
+   "text": [
+    "Flesh Golems patrol the south edge, and their Knock Away throws the tank into other packs.",
+    "Fight them with your back to a wall. Fallen Necromancers raise skeletons, so kill the necromancer."
+   ],
+   "enemies": [
+    "flesh-golem",
+    "fallen-necromancer",
+    "skeleton",
+    "mindless-undead"
+   ],
+   "say": "Back to the wall for golems."
+  },
+  {
+   "kind": "boss",
+   "part": 0,
+   "pos": [
+    404.2,
+    61.61,
+    1500.1
+   ],
+   "title": "Viktor the Vile",
+   "text": [
+    "Light the Grim Campfire in the burned house to start five waves. Viktor comes on the sixth.",
+    "You can skip him."
+   ],
+   "enemies": [
+    "viktor-the-vile"
+   ],
+   "say": "Five waves, then Viktor. Let me grab each wave first.",
+   "boss": "viktor-the-vile"
+  },
+  {
+   "kind": "pack",
+   "part": 0,
+   "pos": [
+    431.2,
+    61.61,
+    1578.3
+   ],
+   "title": "Market Street",
+   "text": [
+    "Market Street runs north along the west wall. Ghouls stand five together, and Plague Ghouls spread a slowing disease.",
+    "Fallen Berserkers cleave the player beside you."
+   ],
+   "enemies": [
+    "ghoul",
+    "plague-ghoul",
+    "fallen-berserker",
+    "skeletal-mage"
+   ]
+  },
+  {
+   "kind": "hazard",
+   "part": 0,
+   "pos": [
+    390.0,
+    62.37,
+    1626.7
+   ],
+   "title": "Stone Watchers",
+   "text": [
+    "Gargoyles perch like statues on the ledges here. A hurt gargoyle turns to stone and heals while weapons do nothing to it.",
+    "Casters burn it while it sleeps."
+   ],
+   "enemies": [
+    "stone-watcher"
+   ]
+  },
+  {
+   "kind": "boss",
+   "part": 0,
+   "pos": [
+    422.7,
+    61.7,
+    1690.7
+   ],
+   "title": "The Abandoned",
+   "text": [
+    "Walk up to the statue with glowing eyes to start three waves of ghosts. The Abandoned steps out after them.",
+    "You can skip him."
+   ],
+   "enemies": [
+    "the-abandoned"
+   ],
+   "say": "Three waves, then the boss. Kick every Life Drain.",
+   "boss": "the-abandoned"
+  },
+  {
+   "kind": "pack",
+   "part": 0,
+   "pos": [
+    358.0,
+    61.66,
+    1738.3
+   ],
+   "title": "Bjork's Road",
+   "text": [
+    "Jump through the large window north of Market Street into the fog. Ghoul packs sit along Bjork's road.",
+    "A Living Monstrosity guards the outhouse in the far corner."
+   ],
+   "enemies": [
+    "ghoul",
+    "ragged-ghoul",
+    "living-monstrosity"
+   ],
+   "say": "Kill the Ragged Ghoul first."
+  },
+  {
+   "kind": "boss",
+   "part": 0,
+   "pos": [
+    381.5,
+    66.2,
+    1770.3
+   ],
+   "title": "Bjork",
+   "text": [
+    "Bjork walks the road along the north-west wall. Clear the ghouls near his path, then pull him to a wall."
+   ],
+   "enemies": [
+    "bjork"
+   ],
+   "say": "I'll fight him with my back to the wall. Casters hold when he goes green.",
+   "boss": "bjork"
+  },
+  {
+   "kind": "pack",
+   "part": 0,
+   "pos": [
+    336.7,
+    70.27,
+    1631.7
+   ],
+   "title": "The Graveyard Gate",
+   "text": [
+    "Head south to the fenced graveyard and its purple rune. Three ghoul packs guard it, with ghosts drifting between them.",
+    "Kill the Ragged Ghoul in each pack first."
+   ],
+   "enemies": [
+    "ghoul",
+    "ragged-ghoul",
+    "vengeful-citizen",
+    "spiteful-phantom"
+   ]
+  },
+  {
+   "kind": "quest",
+   "part": 0,
+   "pos": [
+    379.3,
+    71.47,
+    1574.8
+   ],
+   "title": "Edward Heartweaver",
+   "text": [
+    "Edward's body lies on the west side of the graveyard. Alliance players take his letter for Remember That I Love You.",
+    "Horde players find him for A Frightened Request."
+   ],
+   "enemies": []
+  },
+  {
+   "kind": "boss",
+   "part": 0,
+   "pos": [
+    359.4,
+    61.66,
+    1594.0
+   ],
+   "title": "Rath'mael",
+   "text": [
+    "The last boss stands on the rune. Pull him off it, back toward the gate you came through."
+   ],
+   "enemies": [
+    "rath-mael"
+   ],
+   "say": "Two kickers on Flamestrike. I'll step out of the fire, so follow me.",
+   "boss": "rath-mael"
+  },
+  {
+   "kind": "boss",
+   "part": 0,
+   "pos": [
+    301.8,
+    61.66,
+    1544.9
+   ],
+   "title": "Lordaeron Captain",
+   "text": [
+    "A rare captain sometimes walks the west side after the bosses fall. Only Horde groups fight him.",
+    "Alliance players run back to Captain Truman with the Baron's head."
+   ],
+   "enemies": [
+    "lordaeron-captain"
+   ],
+   "boss": "lordaeron-captain"
+  }
+ ],
+ "enemies": [
+  {
+   "slug": "witherfang",
+   "name": "Witherfang",
+   "boss": true,
+   "type": "Boss",
+   "level": 17,
+   "where": "She patrols the length of King's Alley with two spiders.",
+   "tank": "Pull her when her path takes her clear of the other packs, and hold all three.",
+   "group": "Kill her two spiders first, then her. Cure her poison on the tank.",
+   "abilities": [
+    {
+     "name": "Leech Poison",
+     "icon": 136067,
+     "line": "drains your health into the caster for 40 seconds, and a poison cure removes it.",
+     "spell": 3358
+    }
+   ],
+   "say": null,
+   "npc": 250483,
+   "display": 144189
+  },
+  {
+   "slug": "the-baron",
+   "name": "The Baron",
+   "boss": true,
+   "type": "Boss",
+   "level": 17,
+   "where": "He guards a hole in the wall at the end of the south-east hallway.",
+   "tank": "Fight him with your back to a wall and taunt him back after every Knockout.",
+   "group": "Melee stands behind him and ranged players spread out.",
+   "abilities": [
+    {
+     "name": "Knockout",
+     "icon": 132939,
+     "line": "knocks the tank back and stuns him for 6 seconds.",
+     "spell": 17307
+    },
+    {
+     "name": "Trample",
+     "icon": 136063,
+     "line": "hits everyone standing close to him.",
+     "spell": 5568
+    },
+    {
+     "name": "Mind Blast",
+     "icon": 136224,
+     "line": "is a ranged shadow hit that builds a lot of threat.",
+     "spell": 1326990
+    }
+   ],
+   "say": null,
+   "npc": 250660,
+   "display": 144188
+  },
+  {
+   "slug": "the-abandoned",
+   "name": "The Abandoned",
+   "boss": true,
+   "type": "Boss",
+   "level": 18,
+   "where": "He rises from the glowing-eyed statue in Market Street after three waves.",
+   "tank": "Hold the middle of the courtyard so you meet adds from both corridors.",
+   "group": "Interrupt every Life Drain and stay out of Frost Nova.",
+   "abilities": [
+    {
+     "name": "Life Drain",
+     "icon": 136169,
+     "line": "is a 2-second cast that drains your health, so interrupt it.",
+     "spell": 1266011
+    },
+    {
+     "name": "Frost Nova",
+     "icon": 135848,
+     "line": "roots everyone within 10 yards for up to 8 seconds.",
+     "spell": 14907
+    },
+    {
+     "name": "Frost Armor",
+     "icon": 135843,
+     "line": "slows anyone who hits it in melee, and a magic dispel strips it.",
+     "spell": 12544
+    }
+   ],
+   "say": null,
+   "npc": 250631,
+   "display": 138667
+  },
+  {
+   "slug": "viktor-the-vile",
+   "name": "Viktor the Vile",
+   "boss": true,
+   "type": "Boss",
+   "level": 19,
+   "where": "He comes on the sixth wave after you light the campfire in the burned house.",
+   "tank": "Gather each wave before the group opens fire, then hold Viktor where he lands.",
+   "group": "Save mana for the waves and cure the poison on the tank.",
+   "abilities": [
+    {
+     "name": "Leech Poison",
+     "icon": 136067,
+     "line": "drains your health into the caster for 40 seconds, and a poison cure removes it.",
+     "spell": 3358
+    }
+   ],
+   "say": null,
+   "npc": 256035,
+   "display": 139455
+  },
+  {
+   "slug": "bjork",
+   "name": "Bjork",
+   "boss": true,
+   "type": "Boss",
+   "level": 19,
+   "where": "He patrols the road along the north-west wall.",
+   "tank": "Keep your back to a wall so Mighty Blow cannot throw you into a ghoul pack.",
+   "group": "Casters stop for 3 seconds when his green shield goes up.",
+   "abilities": [
+    {
+     "name": "Mighty Blow",
+     "icon": 132939,
+     "line": "is a heavy hit that knocks its target back.",
+     "spell": 14099
+    },
+    {
+     "name": "Anti-Magic Shield",
+     "icon": 136120,
+     "line": "is a 2-second cast that makes him immune to magic for 3 seconds.",
+     "spell": 1301635
+    }
+   ],
+   "say": null,
+   "npc": 256097,
+   "display": 144170
+  },
+  {
+   "slug": "rath-mael",
+   "name": "Rath'mael",
+   "boss": true,
+   "type": "Boss",
+   "level": 20,
+   "where": "He stands on the purple rune in the fenced graveyard.",
+   "tank": "Pull him off the rune and step out of every Flamestrike.",
+   "group": "Two players take turns interrupting Flamestrike.",
+   "abilities": [
+    {
+     "name": "Flamestrike",
+     "icon": 135826,
+     "line": "is a 3-second cast that sets 5 yards of ground on fire, so step out.",
+     "spell": 18399
+    },
+    {
+     "name": "Fire Shield",
+     "icon": 135817,
+     "line": "burns everyone within 5 yards of him.",
+     "spell": 13376
+    }
+   ],
+   "say": null,
+   "npc": 250657,
+   "display": 144175
+  },
+  {
+   "slug": "lordaeron-captain",
+   "name": "Lordaeron Captain",
+   "boss": true,
+   "type": "Rare",
+   "level": 19,
+   "where": "He appears in the west after the other bosses fall. Alliance players see him as a friend.",
+   "tank": "Turn him away from the group so his Cleave hits only you.",
+   "group": "Ranged players keep their distance from his Hamstring.",
+   "abilities": [
+    {
+     "name": "Cleave",
+     "icon": 132338,
+     "line": "hits you and the player nearest you.",
+     "spell": 5532
+    },
+    {
+     "name": "Hamstring",
+     "icon": 132316,
+     "line": "slows its target's movement for 10 seconds.",
+     "spell": 9080
+    }
+   ],
+   "say": null,
+   "npc": 255699,
+   "display": 139050
+  },
+  {
+   "slug": "spider",
+   "name": "Spider",
+   "boss": false,
+   "type": "Elite",
+   "level": null,
+   "where": "Spiders stand in pairs in King's Alley.",
+   "tank": "Pull each pack back toward the stairs before a patrol walks into it.",
+   "group": "Kill the biggest spider first.",
+   "abilities": [],
+   "say": null,
+   "npc": 250484,
+   "display": 2538
+  },
+  {
+   "slug": "deep-widow",
+   "name": "Deep Widow",
+   "boss": false,
+   "type": "Elite",
+   "level": null,
+   "where": "It stands in King's Alley beside plain spiders.",
+   "tank": "Hold it on you with the rest of its pack.",
+   "group": "Kill it first, because it hits hardest.",
+   "abilities": [],
+   "say": null,
+   "npc": 256040,
+   "display": 539
+  },
+  {
+   "slug": "broodling",
+   "name": "Broodling",
+   "boss": false,
+   "type": "Normal",
+   "level": null,
+   "where": "Broodlings run in threes in King's Alley and walk beside Witherfang.",
+   "tank": "Broodlings die fast and feed you rage, so let them hit you.",
+   "group": "Cleave and area attacks clear them.",
+   "abilities": [],
+   "say": null,
+   "npc": 250625,
+   "display": 9756
+  },
+  {
+   "slug": "broodwidow",
+   "name": "Broodwidow",
+   "boss": false,
+   "type": "Elite",
+   "level": null,
+   "where": "It lurks in King's Alley.",
+   "tank": "Use Shield Block when it stuns you, because the rest of the pack keeps hitting.",
+   "group": "Cure its poison after the pull.",
+   "abilities": [
+    {
+     "name": "Web Spin",
+     "icon": 136022,
+     "line": "stuns its melee target for 7 seconds.",
+     "spell": 24600
+    },
+    {
+     "name": "Poison",
+     "icon": 136016,
+     "line": "deals nature damage over 30 seconds until a poison cure removes it.",
+     "spell": 744
+    }
+   ],
+   "say": null,
+   "npc": 250619,
+   "display": 963
+  },
+  {
+   "slug": "tarantula",
+   "name": "Tarantula",
+   "boss": false,
+   "type": "Elite",
+   "level": null,
+   "where": "It waits behind a broken tree with two Venom Lurkers.",
+   "tank": "Pull it around a corner so its web lands near your healer.",
+   "group": "Cure the poison afterward.",
+   "abilities": [
+    {
+     "name": "Web",
+     "icon": 132149,
+     "line": "roots one player in place for 10 seconds.",
+     "spell": 745
+    },
+    {
+     "name": "Poison",
+     "icon": 136016,
+     "line": "deals nature damage over 30 seconds until a poison cure removes it.",
+     "spell": 744
+    }
+   ],
+   "say": null,
+   "npc": 250488,
+   "display": 1091
+  },
+  {
+   "slug": "venom-lurker",
+   "name": "Venom Lurker",
+   "boss": false,
+   "type": "Elite",
+   "level": null,
+   "where": "Two Lurkers guard the Tarantula in King's Alley.",
+   "tank": "Hold both Lurkers together with the Tarantula.",
+   "group": "A poison cure clears the long poison.",
+   "abilities": [
+    {
+     "name": "Deadly Poison",
+     "icon": 136067,
+     "line": "is a short cast that poisons its target for two minutes.",
+     "spell": 3583
+    }
+   ],
+   "say": null,
+   "npc": 250735,
+   "display": 1087
+  },
+  {
+   "slug": "shrieking-banshee",
+   "name": "Shrieking Banshee",
+   "boss": false,
+   "type": "Elite",
+   "level": null,
+   "where": "Two patrol the street south of Witherfang.",
+   "tank": "Pick it up first in any pull it joins.",
+   "group": "Kill it first, because a silenced healer loses the pull.",
+   "abilities": [
+    {
+     "name": "Deafening Shriek",
+     "icon": 136122,
+     "line": "silences one player for 4 seconds.",
+     "spell": 1309823
+    }
+   ],
+   "say": "Banshee first.",
+   "npc": 250620,
+   "display": 10728
+  },
+  {
+   "slug": "wailing-banshee",
+   "name": "Wailing Banshee",
+   "boss": false,
+   "type": "Elite",
+   "level": null,
+   "where": "It haunts the south end of King's Alley.",
+   "tank": "Its curse makes you miss, so ask for the curse removed.",
+   "group": "Mages and druids remove the curse.",
+   "abilities": [
+    {
+     "name": "Banshee Curse",
+     "icon": 136020,
+     "line": "makes its target miss more often for 12 seconds until a curse removal clears it.",
+     "spell": 17105
+    }
+   ],
+   "say": null,
+   "npc": 250650,
+   "display": 8782
+  },
+  {
+   "slug": "skeletal-soldier",
+   "name": "Skeletal Soldier",
+   "boss": false,
+   "type": "Elite",
+   "level": null,
+   "where": "Soldiers stand in threes with a mage at the south end of King's Alley.",
+   "tank": "Gather the soldiers on you while the group kills the mage.",
+   "group": "Stun soldiers that turn on casters.",
+   "abilities": [],
+   "say": null,
+   "npc": 250626,
+   "display": 7848
+  },
+  {
+   "slug": "skeletal-mage",
+   "name": "Skeletal Mage",
+   "boss": false,
+   "type": "Elite",
+   "level": null,
+   "where": "Mages stand with Skeletal Soldiers.",
+   "tank": "Let casters kill it.",
+   "group": "Kill it first and remove its curse.",
+   "abilities": [
+    {
+     "name": "Frost Armor",
+     "icon": 135843,
+     "line": "slows anyone who hits it in melee, and a magic dispel strips it.",
+     "spell": 12544
+    },
+    {
+     "name": "Curse of Agony",
+     "icon": 136139,
+     "line": "deals shadow damage over 15 seconds until a curse removal clears it.",
+     "spell": 18266
+    }
+   ],
+   "say": "Mage first.",
+   "npc": 250624,
+   "display": 7550
+  },
+  {
+   "slug": "mangled-cadaver",
+   "name": "Mangled Cadaver",
+   "boss": false,
+   "type": "Elite",
+   "level": null,
+   "where": "The hallway that leads to the Baron.",
+   "tank": "Ask for its disease cured before the Baron, because you cannot heal it off.",
+   "group": "Priests and paladins cure Cadaver Worms.",
+   "abilities": [
+    {
+     "name": "Cadaver Worms",
+     "icon": 136134,
+     "line": "is a 10-minute disease that stops health regeneration.",
+     "spell": 16143
+    }
+   ],
+   "say": null,
+   "npc": 250623,
+   "display": 10972
+  },
+  {
+   "slug": "mindless-undead",
+   "name": "Mindless Undead",
+   "boss": false,
+   "type": "Elite",
+   "level": null,
+   "where": "They swarm along the south edge of the city.",
+   "tank": "Gather the whole swarm before anyone attacks.",
+   "group": "Area attacks kill them together.",
+   "abilities": [],
+   "say": null,
+   "npc": 250649,
+   "display": 1200
+  },
+  {
+   "slug": "ghoul",
+   "name": "Ghoul",
+   "boss": false,
+   "type": "Elite",
+   "level": null,
+   "where": "Ghouls stand in packs of up to five in Market Street and on Bjork's road.",
+   "tank": "Gather the pack tight and keep Shield Block up.",
+   "group": "Kill the Ragged Ghoul in each pack first.",
+   "abilities": [],
+   "say": null,
+   "npc": 250627,
+   "display": 1065
+  },
+  {
+   "slug": "ragged-ghoul",
+   "name": "Ragged Ghoul",
+   "boss": false,
+   "type": "Elite",
+   "level": null,
+   "where": "It stands with Ghouls on Bjork's road and at the graveyard.",
+   "tank": "Hold it with its pack.",
+   "group": "Kill it first in every ghoul pack.",
+   "abilities": [],
+   "say": "Kill the Ragged Ghoul first.",
+   "npc": 250622,
+   "display": 414
+  },
+  {
+   "slug": "plague-ghoul",
+   "name": "Plague Ghoul",
+   "boss": false,
+   "type": "Elite",
+   "level": null,
+   "where": "It walks with Skeletal Soldiers.",
+   "tank": "Turn it so its Cleave hits only you.",
+   "group": "Cure Ghoul Plague, because it lasts half an hour.",
+   "abilities": [
+    {
+     "name": "Cleave",
+     "icon": 132338,
+     "line": "hits its target and the player nearest that target.",
+     "spell": 15613
+    },
+    {
+     "name": "Ghoul Plague",
+     "icon": 135914,
+     "line": "is a 30-minute disease that slows you and weakens your hits.",
+     "spell": 16458
+    }
+   ],
+   "say": null,
+   "npc": 250630,
+   "display": 559
+  },
+  {
+   "slug": "fallen-berserker",
+   "name": "Fallen Berserker",
+   "boss": false,
+   "type": "Elite",
+   "level": null,
+   "where": "It walks Market Street.",
+   "tank": "Face it away from everyone so its Cleave hits only you.",
+   "group": "Kill it quickly once it enrages.",
+   "abilities": [
+    {
+     "name": "Enrage",
+     "icon": 136224,
+     "line": "makes it attack much faster for two minutes.",
+     "spell": 8599
+    },
+    {
+     "name": "Cleave",
+     "icon": 132338,
+     "line": "hits its target and the player nearest that target.",
+     "spell": 15613
+    },
+    {
+     "name": "Hamstring",
+     "icon": 132316,
+     "line": "slows its target's movement for 10 seconds.",
+     "spell": 9080
+    }
+   ],
+   "say": null,
+   "npc": 250656,
+   "display": 9784
+  },
+  {
+   "slug": "fallen-necromancer",
+   "name": "Fallen Necromancer",
+   "boss": false,
+   "type": "Elite",
+   "level": null,
+   "where": "Necromancers stand on the south edge of the city.",
+   "tank": "Hold its skeletons until they crumble.",
+   "group": "Kill the necromancer and ignore the skeletons.",
+   "abilities": [
+    {
+     "name": "Summon Skeletal Servant",
+     "icon": 136187,
+     "line": "raises a skeleton that fights for 30 seconds.",
+     "spell": 1322054
+    }
+   ],
+   "say": null,
+   "npc": 255964,
+   "display": 9785
+  },
+  {
+   "slug": "skeleton",
+   "name": "Skeleton",
+   "boss": false,
+   "type": "Normal",
+   "level": null,
+   "where": "Fallen Necromancers raise them.",
+   "tank": "Let them hit you, because they crumble after 30 seconds.",
+   "group": "Ignore them and kill the necromancer.",
+   "abilities": [],
+   "say": null,
+   "npc": 250618,
+   "display": 9786
+  },
+  {
+   "slug": "flesh-golem",
+   "name": "Flesh Golem",
+   "boss": false,
+   "type": "Elite",
+   "level": null,
+   "where": "It patrols the south edge and stops short of a statue.",
+   "tank": "Fight it with your back against a wall or a house.",
+   "group": "Stay behind it so its knockback sends nobody into a pack.",
+   "abilities": [
+    {
+     "name": "Knock Away",
+     "icon": 132939,
+     "line": "is a heavy hit that knocks its target back.",
+     "spell": 10101
+    }
+   ],
+   "say": null,
+   "npc": 255109,
+   "display": 1693
+  },
+  {
+   "slug": "living-monstrosity",
+   "name": "Living Monstrosity",
+   "boss": false,
+   "type": "Elite",
+   "level": null,
+   "where": "It guards an outhouse in the far north-west corner.",
+   "tank": "Put your back to the outhouse wall before it hits you.",
+   "group": "Pull it alone, away from Bjork's road.",
+   "abilities": [
+    {
+     "name": "Mighty Blow",
+     "icon": 132939,
+     "line": "is a heavy hit that knocks its target back.",
+     "spell": 14099
+    }
+   ],
+   "say": null,
+   "npc": 250689,
+   "display": 10433
+  },
+  {
+   "slug": "stone-watcher",
+   "name": "Stone Watcher",
+   "boss": false,
+   "type": "Elite",
+   "level": null,
+   "where": "Gargoyles perch like statues on the upper ledges.",
+   "tank": "Pick it up again when it wakes from stone.",
+   "group": "Casters burn it while it sleeps, because weapons do nothing.",
+   "abilities": [
+    {
+     "name": "Stone Slumber",
+     "icon": 136031,
+     "line": "turns it to stone for 15 seconds while it heals, and weapons do nothing to it.",
+     "spell": 7144
+    }
+   ],
+   "say": null,
+   "npc": 250629,
+   "display": 7534
+  },
+  {
+   "slug": "vengeful-citizen",
+   "name": "Vengeful Citizen",
+   "boss": false,
+   "type": "Normal",
+   "level": null,
+   "where": "They drift through the streets by the graveyard.",
+   "tank": "Gather them with the next pack.",
+   "group": "Area attacks clear them.",
+   "abilities": [],
+   "say": null,
+   "npc": 250651,
+   "display": 146
+  },
+  {
+   "slug": "spiteful-phantom",
+   "name": "Spiteful Phantom",
+   "boss": false,
+   "type": "Normal",
+   "level": null,
+   "where": "Phantoms drift near the graveyard.",
+   "tank": "Its touch slows you, so fight it where you stand.",
+   "group": "Kill it before it slows a caster.",
+   "abilities": [
+    {
+     "name": "Chilling Touch",
+     "icon": 135842,
+     "line": "halves its target's speed and slows its attacks for 8 seconds.",
+     "spell": 12531
+    }
+   ],
+   "say": null,
+   "npc": 250652,
+   "display": 10700
+  },
+  {
+   "slug": "ghostly-citizen",
+   "name": "Ghostly Citizen",
+   "boss": false,
+   "type": "Normal",
+   "level": null,
+   "where": "Three stand where King's Alley bends toward the Baron.",
+   "tank": "Leave them alone, because they stay calm unless hit.",
+   "group": "A curse removal clears their Veil of Shadow.",
+   "abilities": [
+    {
+     "name": "Veil of Shadow",
+     "icon": 136160,
+     "line": "cuts the healing its target receives for 15 seconds.",
+     "spell": 7068
+    }
+   ],
+   "say": null,
+   "npc": 250654,
+   "display": 10478
+  },
+  {
+   "slug": "captain-truman",
+   "name": "Captain Truman",
+   "boss": false,
+   "type": "Quest giver",
+   "level": null,
+   "where": "He stands just inside the gate on the left.",
+   "tank": "Alliance players take Abominable Creatures from him.",
+   "group": "Horde players fight him, and he stuns his target.",
+   "abilities": [
+    {
+     "name": "Hammer of Justice",
+     "icon": 135963,
+     "line": "stuns its target for 4 seconds.",
+     "spell": 13005
+    },
+    {
+     "name": "Holy Strike",
+     "icon": 132325,
+     "line": "adds holy damage to his next swing.",
+     "spell": 1280354
+    }
+   ],
+   "say": null,
+   "npc": 265701,
+   "display": 5711
+  }
+ ],
+ "bosses": [
+  {
+   "slug": "witherfang",
+   "name": "Witherfang",
+   "enemy": "witherfang",
+   "sub": "King's Alley · spider",
+   "level": 17,
+   "room": {
+    "center": [
+     48.7,
+     61.66,
+     1648.0
+    ],
+    "radius": 56,
+    "view": 0.0
+   },
+   "tankSpot": [
+    48.7,
+    61.66,
+    1642.3
+   ],
+   "partySpot": [
+    48.7,
+    61.66,
+    1674.3
+   ],
+   "intro": "A giant spider walks King's Alley with two spiders at her side.",
+   "steps": [
+    "Wait at the north end until she walks toward you, clear of the other packs.",
+    "Pull her with a ranged shot and pick up both spiders as they arrive.",
+    "The group kills the two spiders first while you hold all three.",
+    "Leech Poison drains your health into her, so a shaman or druid cures it.",
+    "Save Shield Block for the moments when all three hit you together."
+   ],
+   "shapes": [
+    {
+     "type": "circle",
+     "at": [
+      48.7,
+      61.66,
+      1642.3
+     ],
+     "step": 3,
+     "r": 3.5
+    },
+    {
+     "type": "arrow",
+     "at": [
+      48.7,
+      61.66,
+      1626.7
+     ],
+     "step": 1,
+     "r": 14,
+     "dir": 0.0,
+     "color": "safe"
+    }
+   ],
+   "loot": [
+    {
+     "name": "Atrophic Girdle",
+     "slot": "mail waist",
+     "mine": true
+    },
+    {
+     "name": "Witherbite Bracers",
+     "slot": "leather wrist"
+    },
+    {
+     "name": "Segmented Spider Leg",
+     "slot": "staff"
+    }
+   ],
+   "say": "Wait for her to come to us. Spiders first, then the boss. Cure the poison on me."
+  },
+  {
+   "slug": "the-abandoned",
+   "name": "The Abandoned",
+   "enemy": "the-abandoned",
+   "sub": "Market Street · optional",
+   "level": 18,
+   "room": {
+    "center": [
+     422.7,
+     61.7,
+     1690.7
+    ],
+    "radius": 59,
+    "view": 0.0
+   },
+   "tankSpot": [
+    422.7,
+    61.64,
+    1687.8
+   ],
+   "partySpot": [
+    422.7,
+    61.63,
+    1663.7
+   ],
+   "intro": "A wraith rises from the glowing-eyed statue after three waves of ghosts.",
+   "steps": [
+    "Start the event only when the whole group has full health and mana.",
+    "Hold the middle of the courtyard, because the waves come down both corridors.",
+    "Leave the last ghost of each wave alive for a moment so the healer can drink.",
+    "Life Drain is a 2-second cast on you, so one player interrupts every one.",
+    "Frost Nova roots everyone within 10 yards of him, so ranged players stand outside it.",
+    "Frost Armor slows anyone who hits him, so a priest or shaman strips it."
+   ],
+   "shapes": [
+    {
+     "type": "circle",
+     "at": [
+      422.7,
+      61.7,
+      1690.7
+     ],
+     "step": 4,
+     "r": 10
+    },
+    {
+     "type": "arrow",
+     "at": [
+      422.7,
+      61.66,
+      1720.6
+     ],
+     "step": 1,
+     "r": 22,
+     "dir": 3.14159
+    },
+    {
+     "type": "arrow",
+     "at": [
+      422.7,
+      61.61,
+      1642.3
+     ],
+     "step": 1,
+     "r": 22,
+     "dir": 0.0
+    }
+   ],
+   "loot": [
+    {
+     "name": "Grip of Fear",
+     "slot": "mail hands",
+     "mine": true
+    },
+    {
+     "name": "Scepter of the Abandoned",
+     "slot": "mace"
+    },
+    {
+     "name": "Rotmender's Leggings",
+     "slot": "cloth legs"
+    }
+   ],
+   "say": "Three waves, then the boss. Leave one ghost alive for drinks. Kick every Life Drain."
+  },
+  {
+   "slug": "the-baron",
+   "name": "The Baron",
+   "enemy": "the-baron",
+   "sub": "South-east hallway · abomination",
+   "level": 17,
+   "room": {
+    "center": [
+     171.7,
+     61.61,
+     1477.4
+    ],
+    "radius": 52,
+    "view": -1.2
+   },
+   "tankSpot": [
+    157.5,
+    61.61,
+    1478.8
+   ],
+   "partySpot": [
+    194.4,
+    65.1,
+    1468.1
+   ],
+   "intro": "A huge abomination blocks a hole in the wall at the end of the south-east hallway.",
+   "steps": [
+    "Clear the cadavers and the skeleton patrol in the hallway before you pull.",
+    "Hold him with your back to the wall so Knockout cannot throw you into a pack.",
+    "Knockout stuns you for 6 seconds and drops your threat, so taunt him back the moment it ends.",
+    "Melee players stand behind him, and ranged players spread out so Trample catches one at most.",
+    "Healers keep you near full health, because Knockout hits for close to half of it.",
+    "Anyone he chases runs straight back to you."
+   ],
+   "shapes": [
+    {
+     "type": "arrow",
+     "at": [
+      167.4,
+      61.61,
+      1478.1
+     ],
+     "step": 1,
+     "r": 12,
+     "dir": -1.5708
+    },
+    {
+     "type": "circle",
+     "at": [
+      171.7,
+      61.61,
+      1477.4
+     ],
+     "step": 3,
+     "r": 8
+    }
+   ],
+   "loot": [
+    {
+     "name": "Abomination Bones",
+     "slot": "mail chest",
+     "mine": true
+    },
+    {
+     "name": "Meathook Slicer",
+     "slot": "dagger"
+    },
+    {
+     "name": "Leftover Abomination Skin",
+     "slot": "cloth chest"
+    },
+    {
+     "name": "Head of the Baron",
+     "slot": "Alliance quest"
+    },
+    {
+     "name": "Abominable Head",
+     "slot": "Horde quest"
+    }
+   ],
+   "say": "He knocks me out and turns on someone. Run to me and I'll taunt him back."
+  },
+  {
+   "slug": "lordaeron-captain",
+   "name": "Lordaeron Captain",
+   "enemy": "lordaeron-captain",
+   "sub": "West side · rare, Horde only",
+   "level": 19,
+   "room": {
+    "center": [
+     301.8,
+     61.66,
+     1544.9
+    ],
+    "radius": 54,
+    "view": 0.0
+   },
+   "tankSpot": [
+    301.8,
+    61.66,
+    1544.9
+   ],
+   "partySpot": [
+    301.8,
+    61.66,
+    1571.2
+   ],
+   "intro": "A rare captain who walks the west side once the other bosses fall. Alliance players see him as a friend.",
+   "steps": [
+    "Clear his patrol path before you engage him.",
+    "Turn him away from the group, because his Cleave hits you and the player nearest you.",
+    "Hamstring slows whoever he hits, so ranged players keep their distance.",
+    "Hold him in place while the group burns him down."
+   ],
+   "shapes": [
+    {
+     "type": "cone",
+     "at": [
+      301.8,
+      61.66,
+      1544.9
+     ],
+     "step": 1,
+     "r": 6,
+     "angle": 1.6,
+     "dir": 3.14159
+    }
+   ],
+   "loot": [
+    {
+     "name": "Phantom Armor"
+    },
+    {
+     "name": "Haunting Blade"
+    }
+   ]
+  },
+  {
+   "slug": "viktor-the-vile",
+   "name": "Viktor the Vile",
+   "enemy": "viktor-the-vile",
+   "sub": "Burned house · optional",
+   "level": 19,
+   "room": {
+    "center": [
+     404.2,
+     61.61,
+     1500.1
+    ],
+    "radius": 56,
+    "view": 0.0
+   },
+   "tankSpot": [
+    404.2,
+    61.61,
+    1505.8
+   ],
+   "partySpot": [
+    404.2,
+    61.61,
+    1525.0
+   ],
+   "intro": "Viktor answers the campfire in the burned house on the sixth wave.",
+   "steps": [
+    "Clear the streets around the house, drink, then light the Grim Campfire.",
+    "Five waves of undead follow with almost no break, so gather each one before the group attacks.",
+    "Healers save mana for the waves, and everyone brings potions and bandages.",
+    "Viktor arrives on the sixth wave and hits hard in melee.",
+    "Leech Poison drains your health into him, so a shaman or druid cures it."
+   ],
+   "shapes": [
+    {
+     "type": "circle",
+     "at": [
+      404.2,
+      61.61,
+      1505.8
+     ],
+     "step": 4,
+     "r": 3.5
+    }
+   ],
+   "loot": [
+    {
+     "name": "Vileblood Scimitar",
+     "slot": "sword",
+     "mine": true
+    },
+    {
+     "name": "Vilewalkers",
+     "slot": "mail feet",
+     "mine": true
+    },
+    {
+     "name": "Death Bindings",
+     "slot": "mail wrist",
+     "mine": true
+    },
+    {
+     "name": "Bloodied Chestwraps",
+     "slot": "leather chest"
+    },
+    {
+     "name": "Sword of the Fallen",
+     "slot": "two-hand sword"
+    }
+   ],
+   "say": "Five waves, then Viktor. Let me grab each wave first."
+  },
+  {
+   "slug": "bjork",
+   "name": "Bjork",
+   "enemy": "bjork",
+   "sub": "North-west road · wight",
+   "level": 19,
+   "room": {
+    "center": [
+     381.5,
+     66.2,
+     1770.3
+    ],
+    "radius": 56,
+    "view": 0.6
+   },
+   "tankSpot": [
+    395.7,
+    66.2,
+    1770.3
+   ],
+   "partySpot": [
+    354.4,
+    61.66,
+    1756.1
+   ],
+   "intro": "A giant wight walks the road along the north-west wall.",
+   "steps": [
+    "Clear every ghoul pack near his road before you pull him.",
+    "Hold him with your back to a wall, because Mighty Blow knocks you back about every 8 seconds.",
+    "Face him away from the group.",
+    "When the green Anti-Magic Shield goes up, casters stop for 3 seconds.",
+    "Healers stay in range after each knockback, because a tank out of reach dies here."
+   ],
+   "shapes": [
+    {
+     "type": "arrow",
+     "at": [
+      390.0,
+      61.66,
+      1770.3
+     ],
+     "step": 1,
+     "r": 10,
+     "dir": 1.5708
+    },
+    {
+     "type": "circle",
+     "at": [
+      354.4,
+      61.66,
+      1756.1
+     ],
+     "step": 4,
+     "r": 6,
+     "color": "party"
+    }
+   ],
+   "loot": [
+    {
+     "name": "Bonerust Leggings",
+     "slot": "mail legs",
+     "mine": true
+    },
+    {
+     "name": "Corpse Chopper",
+     "slot": "two-hand axe"
+    },
+    {
+     "name": "Tuskwrap Belt",
+     "slot": "cloth waist"
+    },
+    {
+     "name": "Sword of the Fallen",
+     "slot": "two-hand sword"
+    }
+   ],
+   "say": "I'll fight him with my back to the wall. Casters hold when he goes green."
+  },
+  {
+   "slug": "rath-mael",
+   "name": "Rath'mael",
+   "enemy": "rath-mael",
+   "sub": "The graveyard · last boss",
+   "level": 20,
+   "room": {
+    "center": [
+     359.4,
+     61.66,
+     1594.0
+    ],
+    "radius": 59,
+    "view": 2.6
+   },
+   "tankSpot": [
+    350.9,
+    61.66,
+    1613.9
+   ],
+   "partySpot": [
+    336.7,
+    67.45,
+    1642.3
+   ],
+   "intro": "The last boss stands on the purple rune inside the fenced graveyard.",
+   "steps": [
+    "Clear the three ghoul packs around the graveyard first.",
+    "Pull him off the rune and back toward the gate, where the group has room.",
+    "Flamestrike lands where you stood when the cast began, so step out of it as soon as you see it.",
+    "Name two interrupters, and they take turns stopping Flamestrike.",
+    "Fire Shield burns everyone within 5 yards of him, so healers plan for the melee.",
+    "He has the most health of any boss here, so the fight runs long."
+   ],
+   "shapes": [
+    {
+     "type": "circle",
+     "at": [
+      350.9,
+      61.66,
+      1613.9
+     ],
+     "step": 2,
+     "r": 5
+    },
+    {
+     "type": "arrow",
+     "at": [
+      350.9,
+      61.66,
+      1613.9
+     ],
+     "step": 2,
+     "r": 9,
+     "dir": 0.9,
+     "color": "safe"
+    },
+    {
+     "type": "circle",
+     "at": [
+      359.4,
+      61.66,
+      1594.0
+     ],
+     "step": 4,
+     "r": 5
+    }
+   ],
+   "loot": [
+    {
+     "name": "Mirror of Rath'mael",
+     "slot": "shield",
+     "mine": true
+    },
+    {
+     "name": "Coldspire Staff",
+     "slot": "staff"
+    },
+    {
+     "name": "Rotmender's Treads",
+     "slot": "cloth feet"
+    }
+   ],
+   "say": "Two kickers on Flamestrike. I'll step out of the fire, so follow me."
+  }
+ ]
+}
