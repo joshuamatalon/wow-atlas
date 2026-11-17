@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#04070c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Ruins of Lordaeron · Atlas</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="stage"></canvas>
+<div id="scan"></div>
+
+<header id="top">
+  <div id="title"><span class="kicker">Field Atlas</span><span id="dname">Ruins of Lordaeron</span></div>
+  <div id="parts" class="seg" role="tablist"></div>
+</header>
+
+<section id="v-map" class="view">
+  <div id="stopcard" class="sheet hidden"></div>
+  <nav id="walk">
+    <button id="prev" aria-label="Previous stop">&#x2039;</button>
+    <div id="walkmeta"><span id="stopn"></span><span id="stopname"></span></div>
+    <button id="next" aria-label="Next stop">&#x203A;</button>
+  </nav>
+</section>
+
+<section id="v-beasts" class="view hidden">
+  <div id="grid"></div>
+  <div id="beast" class="hidden">
+    <button class="back" data-back="beasts">&#x2039; Bestiary</button>
+    <div id="clipbar" class="seg"></div>
+    <div id="beastcard" class="sheet"></div>
+  </div>
+</section>
+
+<section id="v-bosses" class="view hidden">
+  <div id="bosslist"></div>
+  <div id="boss" class="hidden">
+    <button class="back" data-back="bosses">&#x2039; Bosses</button>
+    <div id="bosscard" class="sheet"></div>
+  </div>
+</section>
+
+<nav id="tabs">
+  <button data-view="map" class="on"><i>&#x25C8;</i>Map</button>
+  <button data-view="beasts"><i>&#x2726;</i>Bestiary</button>
+  <button data-view="bosses"><i>&#x2620;</i>Bosses</button>
+</nav>
+<div id="loading"><div class="ring"></div><span>Projecting</span></div>
+<script type="module" src="app.js"></script>
+</body>
+</html>

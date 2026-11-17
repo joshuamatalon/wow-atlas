@@ -1,0 +1,6 @@
+{"dungeon":{"name":"Ruins of Lordaeron"},
+ "parts":[{"name":"The Undercity","short":"Below","clipAbove":40},{"name":"The Ruins","short":"Above"}],
+ "map":{"model":"models/map.glb","center":[392,60,1558],"camOffset":[0,520,-420],"gridRadius":420,"floorY":-90,"startPart":1},
+ "stops":[{"kind":"entrance","part":1,"pos":[392,62,1700],"title":"Test stop","text":["Proof of path."]},{"kind":"boss","part":1,"pos":[392,62,1558],"title":"Test boss","boss":"witherfang","enemies":["witherfang"]}],
+ "enemies":[{"slug":"witherfang","name":"Witherfang","boss":true,"abilities":[{"name":"Leech Poison","icon":136067,"line":"test"}]}],
+ "bosses":[{"slug":"witherfang","name":"Witherfang","room":{"center":[392,62,1558],"radius":60},"tankSpot":[392,62,1550],"partySpot":[392,62,1580],"steps":["One.","Two."],"shapes":[{"type":"circle","r":10,"at":[392,62,1558],"step":0}]}]}

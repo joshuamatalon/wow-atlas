@@ -1,0 +1,10 @@
+const core = require_core();
+const CASCLocal = require_casc_source_local();
+const C = CASCLocal.default || CASCLocal;
+const src = new C('C:\\Program Files (x86)\\World of Warcraft');
+await src.init();
+const prods = src.builds.map(b => b.Product + ' ' + b.Version);
+const idx = src.builds.findIndex(b => b.Product === 'wowf');
+await src.load(idx);
+S.casc = src;
+return { prods, idx, casc: !!core.view.casc, build: src.build.Version };
