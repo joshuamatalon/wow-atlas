@@ -17,6 +17,11 @@ with sync_playwright() as p:
         pg.wait_for_function(f"window.__beastReady === '{e['slug']}'", timeout=60000)
         pg.wait_for_timeout(600)
         png = pg.locator("#stage").screenshot(omit_background=True)
-        Image.open(io.BytesIO(png)).convert("RGBA").resize((200, 200), Image.LANCZOS).save(out / f"{e['slug']}.webp", quality=82)
+        im = Image.open(io.BytesIO(png)).convert("RGBA")
+        bb = im.getchannel("A").point(lambda v: 255 if v > 24 else 0).getbbox() or (0, 0, im.width, im.height)
+        cx, cy = (bb[0] + bb[2]) / 2, (bb[1] + bb[3]) / 2
+        half = max(bb[2] - bb[0], bb[3] - bb[1]) / 2 * 1.12 + 4
+        im = im.crop((int(cx - half), int(cy - half), int(cx + half), int(cy + half)))
+        im.resize((200, 200), Image.LANCZOS).save(out / f"{e['slug']}.webp", quality=82)
         print(e["slug"], flush=True)
     b.close()
