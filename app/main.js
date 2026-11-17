@@ -17,9 +17,10 @@ const DANGER = new THREE.Color('#ff5a5a');
 
 // ---------- renderer ----------
 const canvas = $('#stage');
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance', preserveDrawingBuffer: params.has('shot') });
+const THUMB = params.has('thumb');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: THUMB, powerPreference: 'high-performance', preserveDrawingBuffer: params.has('shot') || THUMB });
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-renderer.setClearColor(0x03060a, 1);
+renderer.setClearColor(0x03060a, THUMB ? 0 : 1);
 renderer.localClippingEnabled = true;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 const loader = new GLTFLoader();
@@ -67,7 +68,7 @@ function hologramize(root, color, opts = {}) {
   root.traverse((o) => {
     if (!o.isMesh) return;
     if (!o.geometry.attributes.normal) o.geometry.computeVertexNormals();
-    const pre = new THREE.Mesh(o.geometry, depthOnly); pre.renderOrder = 0;
+    const pre = new THREE.Mesh(o.geometry, depthOnly); pre.renderOrder = 0; pre.userData.ground = true;
     const holo = new THREE.Mesh(o.geometry, holoMaterial(color, opts)); holo.renderOrder = 2;
     const edges = new THREE.LineSegments(new THREE.EdgesGeometry(o.geometry, opts.edgeAngle ?? 38),
       new THREE.LineBasicMaterial({ color: color.clone().multiplyScalar(opts.edgeBoost ?? 1.0), transparent: true, opacity: opts.edgeOpacity ?? 0.45, depthWrite: false, blending: THREE.AdditiveBlending }));
@@ -227,6 +228,7 @@ async function boot() {
     const h = hologramize(child, col, opts); h.name = name; mapRoot.add(h);
   }
   map.scene.add(mapRoot);
+  resolveHeights();
   map.scene.add(gridFloor(D.map.gridRadius || 420, D.map.floorY ?? -90));
   // markers + route
   D.stops.forEach((s, i) => { const m = makeMarker(s, i); markers.push(m); map.scene.add(m); });
@@ -240,22 +242,50 @@ async function boot() {
   setPart(D.map.startPart ?? 1, false);
   if (params.has('cam')) { const v = params.get('cam').split(',').map(Number); map.camera.position.set(v[0], v[1], v[2]); map.controls.target.set(v[3], v[4], v[5]); }
   if (params.has('part')) setPart(+params.get('part'), false);
+  if (params.has('ortho')) { // debug: exact top-down projection, x0,z0,x1,z1 in world units
+    const [x0, z0, x1, z1] = params.get('ortho').split(',').map(Number);
+    const oc = new THREE.OrthographicCamera(-(x1 - x0) / 2, (x1 - x0) / 2, (z1 - z0) / 2, -(z1 - z0) / 2, 1, 5000);
+    oc.position.set((x0 + x1) / 2, 2000, (z0 + z1) / 2); oc.up.set(0, 0, 1); oc.lookAt((x0 + x1) / 2, 0, (z0 + z1) / 2);
+    map.composer.passes[0].camera = oc; map.camera = oc; map.controls.enabled = false; map.controls.update = () => {};
+    document.querySelectorAll('header,#tabs,.view').forEach((e) => e.style.display = 'none');
+  }
   buildBestiary();
   buildBossList();
   setView(params.get('v') || 'map');
   if (params.has('stop')) gotoStop(+params.get('stop'));
+  if (THUMB) { document.querySelectorAll('header,#tabs,.view,#scan').forEach((e) => e.style.display = 'none'); document.body.style.background = 'transparent'; }
   if (params.has('beast')) openBeast(params.get('beast'));
   if (params.has('boss')) openBoss(params.get('boss'));
   $('#loading').style.opacity = 0; setTimeout(() => $('#loading').classList.add('hidden'), 500);
   window.__ready = true;
 }
 
+function resolveHeights() {
+  const ground = []; mapRoot.updateMatrixWorld(true);
+  mapRoot.traverse((o) => { if (o.userData.ground) ground.push(o); });
+  const rc = new THREE.Raycaster(); const down = new THREE.Vector3(0, -1, 0);
+  const max = D.map.groundMax ?? 110, min = D.map.groundMin ?? 40;
+  const baked = {};
+  const fix = (p) => {
+    if (!p || p[1] != null) return;
+    rc.set(new THREE.Vector3(p[0], 400, p[2]), down);
+    const hit = rc.intersectObjects(ground, false).find((h) => h.point.y <= max && h.point.y >= min);
+    p[1] = hit ? +hit.point.y.toFixed(2) : 62;
+    baked[p[0] + ',' + p[2]] = p[1];
+  };
+  D.stops.forEach((st) => fix(st.pos));
+  (D.route || []).forEach(fix);
+  D.bosses.forEach((b) => { fix(b.room.center); fix(b.tankSpot); fix(b.partySpot); (b.shapes || []).forEach((sh) => fix(sh.at)); });
+  window.__heights = baked;
+}
 function setPart(i, fly) {
   part = i;
   [...$('#parts').children].forEach((b, j) => b.classList.toggle('on', j === i));
   const p = D.parts[i];
-  if (p.clipAbove != null) { partClip[0].constant = p.clipAbove; setClip(mapRoot, partClip); }
+  if (p.clipAbove != null) { partClip[0].normal.set(0, -1, 0); partClip[0].constant = p.clipAbove; setClip(mapRoot, partClip); }
+  else if (p.clipBelow != null) { partClip[0].normal.set(0, 1, 0); partClip[0].constant = -p.clipBelow; setClip(mapRoot, partClip); }
   else setClip(mapRoot, null);
+  $('#parts').style.visibility = D.parts.length > 1 ? 'visible' : 'hidden';
   markers.forEach((m) => { m.visible = (m.userData.stop.part ?? i) === i || p.showAll; });
   if (fly && p.cam) flyTo(map, new THREE.Vector3().fromArray(p.cam.pos), new THREE.Vector3().fromArray(p.cam.target));
 }
@@ -268,7 +298,7 @@ function gotoStop(i) {
   if ((s.part ?? part) !== part) setPart(s.part, false);
   const target = new THREE.Vector3().fromArray(s.pos);
   const dir = map.camera.position.clone().sub(map.controls.target);
-  const want = s.kind === 'boss' ? 95 : 120;
+  const want = s.kind === 'boss' ? 150 : 175;
   dir.setLength(want); if (dir.y < want * 0.55) dir.y = want * 0.55; dir.setLength(want);
   flyTo(map, target.clone().add(dir), target);
   $('#stopn').textContent = `Stop ${i + 1} of ${D.stops.length}`;
@@ -321,8 +351,8 @@ canvas.addEventListener('pointerup', (e) => {
 let beastModel = null, mixer = null, clips = {};
 const beastScene = beast.scene;
 beastScene.fog = null;
-beastScene.add(new THREE.HemisphereLight(0xbfefff, 0x0a1a22, 1.6));
-const key = new THREE.DirectionalLight(0xffffff, 1.6); key.position.set(3, 6, 4); beastScene.add(key);
+beastScene.add(new THREE.HemisphereLight(0xe4f7ff, 0x1a2a32, 2.6));
+const key = new THREE.DirectionalLight(0xffffff, 2.4); key.position.set(3, 6, 4); beastScene.add(key);
 const rimL = new THREE.DirectionalLight(0x62f0ff, 2.2); rimL.position.set(-4, 3, -5); beastScene.add(rimL);
 const pad = new THREE.Group();
 {
@@ -360,18 +390,18 @@ async function openBeast(slug) {
   const e = enemyBy(slug); if (!e) return;
   $('#grid').classList.add('hidden'); $('#beast').classList.remove('hidden');
   const card = $('#beastcard');
-  let h = `<span class="tag ${e.boss ? 'boss' : ''}">${e.boss ? 'Boss' : 'Enemy'}${e.level ? ' · Level ' + esc(e.level) : ''}${e.type ? ' · ' + esc(e.type) : ''}</span><h2>${esc(e.name)}</h2>`;
+  let h = `<span class="tag ${e.boss ? 'boss' : ''}">${esc(e.type || (e.boss ? 'Boss' : 'Enemy'))}${e.level ? ' · Level ' + esc(e.level) : ''}</span><h2>${esc(e.name)}</h2>`;
   if (e.where) h += `<p><b>Where:</b> ${esc(e.where)}</p>`;
   if (e.tank) h += `<div class="role">You, the tank</div><p>${esc(e.tank)}</p>`;
   if (e.group) h += `<div class="role">The group</div><p>${esc(e.group)}</p>`;
-  for (const a of e.abilities || []) h += `<div class="ab"><img alt="" src="icons/${a.icon}.png"><div><b>${esc(a.name)}.</b> ${esc(a.line)}</div></div>`;
+  for (const a of e.abilities || []) h += `<div class="ab"><img alt="" src="icons/${a.icon}.png"><div><b>${esc(a.name)}</b> ${esc(a.line)}</div></div>`;
   if (e.say) h += `<div class="say"><b>Say</b>${esc(e.say)}</div>`;
   card.innerHTML = h; card.scrollTop = 0;
   if (beastModel) { beastScene.remove(beastModel); beastModel = null; mixer = null; }
   const gltf = await loader.loadAsync(`models/creatures/${e.model || e.slug}.glb`);
   if (enemyBy(slug) !== e || $('#beast').classList.contains('hidden')) return;
   const m = gltf.scene;
-  m.traverse((o) => { if (o.isMesh) { o.frustumCulled = false; if (o.material) { o.material.side = THREE.DoubleSide; if (o.material.map) o.material.alphaTest = 0.4; } } });
+  m.traverse((o) => { if (o.isMesh) { o.frustumCulled = false; const mt = o.material; if (mt) { mt.side = THREE.DoubleSide; if (mt.transparent) { mt.depthWrite = false; mt.blending = THREE.AdditiveBlending; o.renderOrder = 2; } } } });
   mixer = new THREE.AnimationMixer(m); clips = {};
   for (const c of gltf.animations) clips[c.name] = c;
   playClip('idle');
@@ -383,7 +413,7 @@ async function openBeast(slug) {
   m.scale.setScalar(s); m.position.set(-ctr.x * s, -box.min.y * s, -ctr.z * s);
   beastModel = new THREE.Group(); beastModel.add(m); beastScene.add(beastModel);
   const ang = e.view ?? 0.6;
-  beast.camera.position.set(Math.sin(ang) * 5.4, 1.9, Math.cos(ang) * 5.4); beast.controls.target.set(0, 1.05, 0); beast.controls.update();
+  beast.camera.position.set(Math.sin(ang) * 7.4, 2.3, Math.cos(ang) * 7.4); beast.controls.target.set(0, 1.15, 0); beast.controls.update();
   const bar = $('#clipbar'); bar.innerHTML = '';
   for (const n of ['idle', 'attack', 'cast']) if (clips[n]) { const b = document.createElement('button'); b.textContent = n[0].toUpperCase() + n.slice(1); b.onclick = () => playClip(n); bar.appendChild(b); }
   [...bar.children].forEach((b) => b.classList.toggle('on', b.textContent.toLowerCase() === 'idle'));
@@ -398,7 +428,7 @@ function playClip(n) {
 function closeBeast() { $('#beast').classList.add('hidden'); $('#grid').classList.remove('hidden'); window.__beastReady = null; }
 
 // ---------- bosses ----------
-let bossOpen = null, bossDeco = null, stepTimer = null;
+let bossOpen = null, bossDeco = null, stepTimer = null, framing = 'map';
 function buildBossList() {
   const list = $('#bosslist'); list.innerHTML = '';
   D.bosses.forEach((b, i) => {
@@ -412,7 +442,7 @@ function floorShape(sh) {
   let geo;
   if (sh.type === 'circle') geo = new THREE.CircleGeometry(sh.r, 64);
   else if (sh.type === 'ring') geo = new THREE.RingGeometry(sh.r0, sh.r, 64);
-  else if (sh.type === 'cone') geo = new THREE.CircleGeometry(sh.r, 48, -sh.angle / 2, sh.angle);
+  else if (sh.type === 'cone') geo = new THREE.CircleGeometry(sh.r, 48, Math.PI / 2 - sh.angle / 2, sh.angle);
   else if (sh.type === 'line') geo = new THREE.PlaneGeometry(sh.w, sh.r).translate(0, sh.r / 2, 0);
   else if (sh.type === 'arrow') { const s = new THREE.Shape(); s.moveTo(-0.6, 0); s.lineTo(0.6, 0); s.lineTo(0.6, sh.r - 2.5); s.lineTo(1.8, sh.r - 2.5); s.lineTo(0, sh.r); s.lineTo(-1.8, sh.r - 2.5); s.lineTo(-0.6, sh.r - 2.5); s.closePath(); geo = new THREE.ShapeGeometry(s); }
   const mat = new THREE.ShaderMaterial({
@@ -422,10 +452,10 @@ function floorShape(sh) {
     fragmentShader: `uniform float uTime; uniform vec3 uCol; uniform float uPulse; uniform float uOn; varying vec2 vUv; varying vec3 vP;
       void main(){ float r = length(vP.xy); float wave = fract(r*0.08 - uTime*0.6*uPulse);
         float edge = smoothstep(0.92, 1.0, vUv.x) + smoothstep(0.92,1.0,1.0-vUv.x) + smoothstep(0.92,1.0,vUv.y)+smoothstep(0.92,1.0,1.0-vUv.y);
-        float a = (0.12 + 0.22*smoothstep(0.7,1.0,wave)) * (0.45 + 0.55*uOn);
+        float a = (0.30 + 0.35*smoothstep(0.6,1.0,wave)) * (0.5 + 0.5*uOn);
         gl_FragColor = vec4(uCol*(1.0+uOn), a); }`,
   });
-  const m = new THREE.Mesh(geo, mat); m.rotation.x = -Math.PI / 2; m.renderOrder = 6;
+  const m = new THREE.Mesh(geo, mat); m.rotation.x = Math.PI / 2; m.renderOrder = 6;
   const g = new THREE.Group(); g.add(m);
   g.position.fromArray(sh.at); g.position.y += 0.4; if (sh.dir != null) g.rotation.y = sh.dir;
   g.userData = { mat, step: sh.step };
@@ -445,19 +475,22 @@ function openBoss(slug) {
     const ring = new THREE.Mesh(new THREE.RingGeometry(2.6, 3.4, 40), new THREE.MeshBasicMaterial({ color: kind === 'tank' ? HOLO : new THREE.Color('#b9a2ff'), transparent: true, opacity: 0.9, depthTest: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide }));
     ring.rotation.x = -Math.PI / 2; ring.position.fromArray(p); ring.position.y += 0.5; ring.renderOrder = 7; bossDeco.add(ring);
   }
+  { const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: glyphTexture('boss'), depthTest: false, transparent: true, sizeAttenuation: false }));
+    s.scale.setScalar(0.085); s.position.fromArray(b.room.center); s.position.y += 7; s.renderOrder = 13; bossDeco.add(s); }
   map.scene.add(bossDeco);
   // cut the room out of the map
   const c = new THREE.Vector3().fromArray(b.room.center); const r = b.room.radius; const top = c.y + (b.room.up ?? 14);
   const planes = [
     new THREE.Plane(new THREE.Vector3(1, 0, 0), -(c.x - r)), new THREE.Plane(new THREE.Vector3(-1, 0, 0), c.x + r),
     new THREE.Plane(new THREE.Vector3(0, 0, 1), -(c.z - r)), new THREE.Plane(new THREE.Vector3(0, 0, -1), c.z + r),
-    new THREE.Plane(new THREE.Vector3(0, -1, 0), top), new THREE.Plane(new THREE.Vector3(0, 1, 0), -(c.y - (b.room.down ?? 6))),
+    new THREE.Plane(new THREE.Vector3(0, -1, 0), top), new THREE.Plane(new THREE.Vector3(0, 1, 0), -(c.y - (b.room.down ?? 8))),
   ];
   setClip(mapRoot, planes);
   markers.forEach((m) => { m.visible = false; }); route.visible = false;
   const ang = b.room.view ?? 0.0;
-  const dist = r * 2.3;
-  map.camera.position.set(c.x + Math.sin(ang) * dist * 0.55, c.y + dist * 0.85, c.z + Math.cos(ang) * dist * 0.55);
+  const dist = r * 3.4;
+  framing = 'boss'; resize();
+  map.camera.position.set(c.x - Math.sin(ang) * dist * 0.32, c.y + dist * 0.95, c.z - Math.cos(ang) * dist * 0.32);
   map.controls.target.copy(c);
   flight = null;
   const card = $('#bosscard');
@@ -481,7 +514,7 @@ function lightStep(i) {
   bossDeco?.children.forEach((g) => { if (g.userData.mat) g.userData.mat.uniforms.uOn.value = (g.userData.step == null || g.userData.step === i) ? 1 : 0; });
 }
 function closeBoss() {
-  bossOpen = null; clearInterval(stepTimer);
+  bossOpen = null; clearInterval(stepTimer); framing = 'map'; resize();
   if (bossDeco) { map.scene.remove(bossDeco); bossDeco = null; }
   $('#boss').classList.add('hidden'); $('#bosslist').classList.remove('hidden');
   route.visible = true; setPart(part, false);
@@ -508,8 +541,8 @@ function resize() {
   const w = innerWidth, h = innerHeight;
   renderer.setSize(w, h, false);
   for (const st of [map, beast]) { st.camera.aspect = w / h; st.camera.updateProjectionMatrix(); st.composer.setSize(w, h); st.composer.setPixelRatio(Math.min(devicePixelRatio, 2)); }
-  if (w < 900) beast.camera.setViewOffset(w, h, 0, h * 0.2, w, h); else beast.camera.setViewOffset(w, h, -w * 0.16, 0, w, h);
-  if (w >= 900) map.camera.setViewOffset(w, h, w * 0.12, 0, w, h); else map.camera.setViewOffset(w, h, 0, h * 0.12, w, h);
+  if (THUMB) beast.camera.clearViewOffset(); else if (w < 900) beast.camera.setViewOffset(w, h, 0, h * 0.2, w, h); else beast.camera.setViewOffset(w, h, -w * 0.16, 0, w, h);
+  if (w >= 900) map.camera.setViewOffset(w, h, framing === 'boss' ? w * 0.16 : w * 0.12, 0, w, h); else map.camera.setViewOffset(w, h, 0, framing === 'boss' ? h * 0.27 : h * 0.12, w, h);
 }
 addEventListener('resize', resize); resize();
 function tick() {
@@ -520,7 +553,8 @@ function tick() {
   if (active !== st) { if (active) active.controls.enabled = false; st.controls.enabled = true; active = st; }
   stepFlight();
   st.controls.update();
-  if (st === beast && mixer) mixer.update(dt);
+  if (st === beast && mixer) mixer.update(THUMB ? 0 : dt);
+  if (THUMB) { pad.visible = false; renderer.render(st.scene, st.camera); return; }
   if (st === map) for (const m of markers) {
     const sp = m.userData.sprite; const on = sp.userData.on;
     const k = on ? 1.35 + 0.12 * Math.sin(uTime.value * 5) : 1;
