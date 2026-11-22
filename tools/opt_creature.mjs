@@ -1,13 +1,18 @@
 // Slim a wow.export creature GLB for the web: keep idle/attack/cast clips, WebP textures, meshopt.
-// node opt_creature.mjs IN.glb OUT.glb [maxTex=512]
+// node opt_creature.mjs IN.glb OUT.glb [maxTex=512] [--drop=Part1,Part2] [--cutout=material1,material2]
+//   --drop    removes mesh nodes whose name ends in _PartN (geosets the game would not show)
+//   --cutout  makes those materials alpha-tested, for cloth cards drawn on a see-through texture
 import { NodeIO } from '@gltf-transform/core';
 import { ALL_EXTENSIONS } from '@gltf-transform/extensions';
 import { prune, dedup, resample, textureCompress, meshopt, weld } from '@gltf-transform/functions';
 import { MeshoptEncoder, MeshoptDecoder } from 'meshoptimizer';
 import sharp from 'sharp';
 
-const [inp, out, maxTexArg] = process.argv.slice(2);
+const flags = process.argv.slice(2).filter((a) => a.startsWith('--'));
+const [inp, out, maxTexArg] = process.argv.slice(2).filter((a) => !a.startsWith('--'));
 const maxTex = Number(maxTexArg || 512);
+const flag = (k) => flags.filter((f) => f.startsWith(`--${k}=`)).flatMap((f) => f.split('=')[1].split(',')).filter(Boolean);
+const DROP = flag('drop'), CUTOUT = flag('cutout');
 await MeshoptEncoder.ready; await MeshoptDecoder.ready;
 const io = new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({
   'meshopt.encoder': MeshoptEncoder, 'meshopt.decoder': MeshoptDecoder });
@@ -26,6 +31,9 @@ for (const a of anims) if (!keep.has(a)) {
   for (const c of a.listChannels()) c.dispose();
   a.dispose();
 }
+const dropped = [], cut = [];
+for (const n of root.listNodes()) if (n.getMesh() && DROP.some((d) => n.getName().endsWith('_' + d))) { dropped.push(n.getName()); n.dispose(); }
+for (const m of root.listMaterials()) if (CUTOUT.includes(m.getName())) { m.setAlphaMode('MASK').setAlphaCutoff(0.5); cut.push(m.getName()); }
 const names = { };
 for (const a of root.listAnimations()) {
   const n = a.getName();
@@ -40,4 +48,4 @@ await doc.transform(
   meshopt({ encoder: MeshoptEncoder, level: 'medium' }),
 );
 await io.write(out, doc);
-console.log(JSON.stringify({ out, clips: names }));
+console.log(JSON.stringify({ out, clips: names, dropped, cut }));

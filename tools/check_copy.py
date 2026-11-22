@@ -1,26 +1,27 @@
 """Check the page's words: limits per card, one sentence per boss step, no em dash, no source marks, no damage numbers.
-Writes work/copy.txt (all visible prose) for prose_check.py.  python -I check_copy.py
+Writes work/copy.txt (all visible prose) for prose_check.py.  python -I check_copy.py [DUNGEON]   (data file name, default ruins)
 """
 import json, re, sys
 from pathlib import Path
 
 R = Path("C:/Users/joshu/wow-atlas")
-d = json.load(open(R / "site/data/ruins.json", encoding="utf-8"))
+dn = sys.argv[1] if len(sys.argv) > 1 else "ruins"
+d = json.load(open(R / f"site/data/{dn}.json", encoding="utf-8"))
 fails, lines = [], []
 words = lambda s: len(re.findall(r"[A-Za-z0-9']+", s or ""))
 
 for e in d["enemies"]:
-    parts = [e.get("where"), e.get("tank"), e.get("group"), e.get("say")] + [a["name"] + " " + a["line"] for a in e["abilities"]]
+    parts = [e.get("where"), e.get("tank"), e.get("group"), e.get("say"), e.get("plain")] + [a["name"] + " " + a["line"] for a in e["abilities"]]
     n = sum(words(p) for p in parts)
     if not e["boss"] and n > 50:
         fails.append(f"card over 50 words: {e['name']} ({n})")
     lines += [p for p in parts if p]
-for s in d["stops"]:
+for s in d.get("stops", []):
     n = sum(words(t) for t in s["text"]) + words(s.get("say"))
     if n > 50:
         fails.append(f"stop over 50 words: {s['title']} ({n})")
     lines += s["text"] + ([s["say"]] if s.get("say") else [])
-for b in d["bosses"]:
+for b in d.get("bosses", []):
     if len(b["steps"]) > 6:
         fails.append(f"boss over six steps: {b['name']}")
     for st in b["steps"]:
@@ -38,7 +39,7 @@ for pat in [r"\bSUSPECTED\b", r"\bCONFIRMED\b", r"\bsource[sd]?\b", r"\bwowhead\
         fails.append(f"source mark: {m.group(0)}")
 for m in re.finditer(r"\b\d[\d,]*\s*(damage|dps|health|hp|threat)\b", text, re.I):
     fails.append(f"damage-type number: {m.group(0)}")
-(R / "work/copy.txt").write_text(text, encoding="utf-8")
+(R / ("work/copy.txt" if dn == "ruins" else f"work/copy_{dn}.txt")).write_text(text, encoding="utf-8")
 print(f"{len(lines)} lines checked, {words(text)} words")
 print("\n".join(fails) if fails else "no failures")
 sys.exit(1 if fails else 0)

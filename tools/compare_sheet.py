@@ -1,10 +1,12 @@
-"""Download Wowhead's render of each creature (by display id) and lay it beside our thumbnail.  python -I compare_sheet.py"""
-import json, io, urllib.request
+"""Download Wowhead's render of each creature (by display id) and lay it beside our thumbnail.
+python -I compare_sheet.py [DUNGEON]     (data file name, default ruins; writes work/shots/compare[_DUNGEON].png)"""
+import json, io, sys, urllib.request
 from pathlib import Path
 from PIL import Image, ImageDraw
 
 R = Path("C:/Users/joshu/wow-atlas")
-data = json.load(open(R / "site/data/ruins.json", encoding="utf-8"))
+dn = sys.argv[1] if len(sys.argv) > 1 else "ruins"
+data = json.load(open(R / f"site/data/{dn}.json", encoding="utf-8"))
 dl = R / "work/dl/whthumbs"; dl.mkdir(parents=True, exist_ok=True)
 cells = []
 for e in data["enemies"]:
@@ -17,7 +19,7 @@ for e in data["enemies"]:
         except Exception as x:
             print("no wowhead thumb", e["slug"], d, x)
     ref = Image.open(f).convert("RGBA") if f.exists() else Image.new("RGBA", (200, 200), (60, 0, 0, 255))
-    mine = Image.open(R / "site/thumbs" / f"{e['slug']}.webp").convert("RGBA")
+    mine = Image.open(R / "site/thumbs" / data.get("assets", "") / f"{e['slug']}.webp").convert("RGBA")
     cells.append((e["name"], ref, mine))
 cols = 4
 cw, ch = 420, 230
@@ -30,5 +32,5 @@ for i, (name, ref, mine) in enumerate(cells):
         bg = Image.new("RGBA", (200, 200), (40, 46, 56, 255)); bg.alpha_composite(im, ((200 - im.width) // 2, (200 - im.height) // 2))
         sheet.paste(bg.convert("RGB"), (x + 5 + j * 205, y + 25))
     dr.text((x + 6, y + 6), f"{name}   (left: Wowhead, right: ours)", fill=(230, 230, 160))
-sheet.save(R / "work/shots/compare.png")
+sheet.save(R / ("work/shots/compare.png" if dn == "ruins" else f"work/shots/compare_{dn}.png"))
 print("sheet", sheet.size)

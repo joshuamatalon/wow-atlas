@@ -2,7 +2,7 @@
 import json, re, sys
 from pathlib import Path
 
-d = Path("C:/Users/joshu/wow-atlas/work/dl/wh/npc")
+d = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("C:/Users/joshu/wow-atlas/work/dl/wh/npc")
 summ = json.load(open(d / "npcs_summary.json", encoding="utf-8"))
 out = {}
 for nid, v in summ.items():

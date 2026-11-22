@@ -7,7 +7,7 @@ cd "$R"
 git add -A
 git -c user.name="joshuamatalon" -c user.email="joshuamatalon@gmail.com" commit -qm "${1:-Update atlas}
 
-Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>" || true
+Co-Authored-By: Claude <noreply@anthropic.com>" || true
 git push -q origin main
 git branch -D gh-pages > /dev/null 2>&1 || true
 git subtree split --prefix site -b gh-pages > /dev/null

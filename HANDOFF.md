@@ -53,3 +53,39 @@ State at 2026-11-17 12:35, stage 6 of 6 reached once, with the open items below.
 
 ## Changes after the first handoff
 - 2026-11-17 13:45: a tap on empty map space (or Escape) closes the stop card and flies back to the overview. A drag still turns the map. `python -I tools/tap_test.py BASE_URL` checks it in Chromium and WebKit.
+
+## The Deadmines: bestiary only (2026-11-22)
+Live at https://joshuamatalon.github.io/wow-atlas/?d=deadmines. The switch in the header moves between the two dungeons
+(`site/data/index.json` lists them). `site/data/deadmines.json` has no `map`, so the page opens on the grid and hides
+the Map and Bosses tabs. Models and thumbnails sit in `dm/` subfolders, named by the file's `assets` field.
+
+The build holds these parts.
+- 25 creatures from the Wowhead Forever zone 1581 list, which has 28 rows; Target Dummy, Rat and Hawk are left out.
+- Nine plain models from `tools/cmd/ex1.js`. Sixteen character models (humans, goblins, Mr. Smite) from
+  `tools/cmd/exchar3.js`, which exports each one dressed: baked skin, the right geosets, the Defias mask, shoulders and
+  Greenskin's hat. The mask and shoulders are bound to their attachment bones, so they follow every clip.
+- Every ability line is worded from the live client's spell row (`work/dm/spells_live.json`, build 1.60.1.71037). Which
+  spells a creature has comes from its Wowhead page, the rows above "Dazed"; the rows below it are same-name variants.
+- `work/shots/compare_deadmines.png` lays all 25 beside Wowhead's renders. All 25 match in body and outfit.
+
+Four faults in wow.export 0.2.21 that `exchar3.js` and `opt_dm.txt` work around:
+1. A first preview never dresses the creature. The script unticks and reticks one gear slot to run the dressing code.
+2. The right shoulder loads as a body-skinned model. The script binds it to attachment point 5.
+3. A chest item with no skirt hides the skirt that the legs item carries (Defias Wizard). The script takes the larger.
+4. The export keeps three things the game does not draw: the opaque eye overlay (`EyeGlowB1`), the goblin's emote rag
+   (`Geoset1`) and Mr. Smite's default jewelry. `tools/opt_dm.txt` drops them.
+Also: `modelsExportTextures` was off in the saved wow.export settings, and both export scripts now set it on.
+
+Rebuild, with wow.export started hidden and `load.js` run as described above:
+`python -I tools/wh_npcs.py work/dm/wh/roster_npcs.json work/dm/wh/npc`, `python -I tools/wh_abilities.py work/dm/wh/npc`,
+`python -I tools/creature_jobs.py dm`, `we.py tools/cmd/ex1.js 600 ARGS`, `we.py tools/cmd/exchar3.js 1500 ARGS`,
+`we.py tools/cmd/spells.js 900 ARGS` (each script's first lines name its ARGS), `sh tools/opt_all.sh dm`,
+`python -I tools/make_deadmines.py`, `sh tools/build.sh`, `python -I tools/thumbs.py BASE_URL deadmines`,
+`python -I tools/compare_sheet.py deadmines`, `python -I tools/check_copy.py deadmines`, then `sh tools/publish.sh`.
+
+These items stay open for the Deadmines.
+- No creature holds a weapon. The client has no table of what each NPC wields, and Wowhead's renders have none either.
+- Cards hold the name, rank, level and abilities. They have no "where" or tank lines, because Josh asked for the
+  bestiary alone.
+- The boss order on the grid is the Classic order from memory. Nothing in the Forever data confirms it.
+- `exchar3.js` should also repair the three Ruins character models in open item 1 above. It has not been run on them.

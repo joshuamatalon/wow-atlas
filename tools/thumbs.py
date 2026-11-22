@@ -1,4 +1,6 @@
-"""Render a transparent thumbnail of every creature through the page's own viewer.  python -I thumbs.py BASE_URL"""
+"""Render a transparent thumbnail of every creature through the page's own viewer.
+python -I thumbs.py BASE_URL [DUNGEON]     (DUNGEON is the data file name, default ruins)
+"""
 import json, sys
 from pathlib import Path
 from playwright.sync_api import sync_playwright
@@ -6,14 +8,15 @@ from PIL import Image
 import io
 
 base = sys.argv[1]
+dn = sys.argv[2] if len(sys.argv) > 2 else "ruins"
 R = Path("C:/Users/joshu/wow-atlas")
-data = json.load(open(R / "site/data/ruins.json", encoding="utf-8"))
-out = R / "site/thumbs"; out.mkdir(exist_ok=True)
+data = json.load(open(R / f"site/data/{dn}.json", encoding="utf-8"))
+out = R / "site/thumbs" / data.get("assets", ""); out.mkdir(parents=True, exist_ok=True)
 with sync_playwright() as p:
     b = p.chromium.launch(headless=True, args=["--use-angle=swiftshader", "--enable-unsafe-swiftshader"])
     pg = b.new_page(viewport={"width": 320, "height": 320}, device_scale_factor=1)
     for e in data["enemies"]:
-        pg.goto(f"{base}?thumb&v=beasts&beast={e['slug']}", wait_until="load")
+        pg.goto(f"{base}?thumb&d={dn}&v=beasts&beast={e['slug']}", wait_until="load")
         pg.wait_for_function(f"window.__beastReady === '{e['slug']}'", timeout=60000)
         pg.wait_for_timeout(600)
         png = pg.locator("#stage").screenshot(omit_background=True)

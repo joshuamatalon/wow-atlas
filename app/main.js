@@ -9,7 +9,8 @@ import { OutputPass } from 'three/examples/jsm/postprocessing/OutputPass.js';
 
 const $ = (s) => document.querySelector(s);
 const params = new URLSearchParams(location.search);
-const DATA_URL = 'data/' + (params.get('d') || 'ruins') + '.json';
+const DNAME = params.get('d') || 'ruins';
+const DATA_URL = 'data/' + DNAME + '.json';
 const HOLO = new THREE.Color('#62f0ff');
 const BOSS = new THREE.Color('#ffb54a');
 const QUEST = new THREE.Color('#ffe066');
@@ -195,6 +196,7 @@ function stepFlight() {
 
 // ---------- app state ----------
 let D; // data
+let ASSET = ''; // folder prefix for this dungeon's models and thumbnails
 let view = 'map';
 let active; // active stage
 const map = makeStage();
@@ -209,6 +211,9 @@ async function boot() {
   D = await (await fetch(DATA_URL)).json();
   $('#dname').textContent = D.dungeon.name;
   document.title = D.dungeon.name + ' · Atlas';
+  ASSET = D.assets || '';
+  buildDungeonSwitch();
+  if (!D.map) return bootBestiaryOnly();
   // parts toggle
   const parts = $('#parts');
   D.parts.forEach((p, i) => {
@@ -260,6 +265,32 @@ async function boot() {
   if (params.has('boss')) openBoss(params.get('boss'));
   $('#loading').style.opacity = 0; setTimeout(() => $('#loading').classList.add('hidden'), 500);
   window.__ready = true;
+}
+
+// A dungeon file with no map is a bestiary alone: no route, no fight views, and the grid opens first.
+function bootBestiaryOnly() {
+  D.stops = D.stops || []; D.bosses = D.bosses || []; D.parts = D.parts || [];
+  document.querySelectorAll('#tabs,#parts').forEach((e) => e.classList.add('hidden'));
+  document.body.classList.add('solo');
+  buildBestiary();
+  setView('beasts');
+  if (THUMB) { document.querySelectorAll('header,#tabs,.view,#scan').forEach((e) => e.style.display = 'none'); document.body.style.background = 'transparent'; document.documentElement.style.background = 'transparent'; }
+  if (params.has('beast')) openBeast(params.get('beast'));
+  $('#loading').style.opacity = 0; setTimeout(() => $('#loading').classList.add('hidden'), 500);
+  window.__ready = true;
+}
+async function buildDungeonSwitch() {
+  try {
+    const list = await (await fetch('data/index.json')).json();
+    if (list.length < 2) return;
+    const box = $('#dsel');
+    for (const it of list) {
+      const a = document.createElement('a'); a.textContent = it.short; a.href = it.d === 'ruins' ? './' : '?d=' + it.d;
+      if (it.d === DNAME) a.className = 'on';
+      box.appendChild(a);
+    }
+    box.classList.remove('hidden');
+  } catch (e) { /* no index file: one dungeon, no switch */ }
 }
 
 function resolveHeights() {
@@ -320,7 +351,7 @@ function gotoStop(i) {
 }
 let overview = null;
 function leaveStop() {
-  if (stopIdx < 0) return;
+  if (stopIdx < 0 || !D.map) return;
   stopIdx = -1;
   $('#stopcard').classList.add('hidden');
   markers.forEach((m) => { m.userData.sprite.userData.on = false; });
@@ -396,7 +427,7 @@ function buildBestiary() {
     const h = document.createElement('div'); h.className = 'gsec'; h.textContent = title; grid.appendChild(h);
     for (const e of list) {
       const b = document.createElement('button'); b.className = 'cell' + (e.boss ? ' boss' : ''); b.dataset.beast = e.slug;
-      b.innerHTML = `<img loading="lazy" alt="" src="thumbs/${e.slug}.webp"><span>${esc(e.name)}</span>`;
+      b.innerHTML = `<img loading="lazy" alt="" src="thumbs/${ASSET}${e.slug}.webp"><span>${esc(e.name)}</span>`;
       grid.appendChild(b);
     }
   }
@@ -411,9 +442,10 @@ async function openBeast(slug) {
   if (e.group) h += `<div class="role">The group</div><p>${esc(e.group)}</p>`;
   for (const a of e.abilities || []) h += `<div class="ab"><img alt="" src="icons/${a.icon}.png"><div><b>${esc(a.name)}</b> ${esc(a.line)}</div></div>`;
   if (e.say) h += `<div class="say"><b>Say</b>${esc(e.say)}</div>`;
+  if (!(e.abilities || []).length && !e.where && !e.tank) h += `<p>${esc(e.plain || 'It only swings in melee.')}</p>`;
   card.innerHTML = h; card.scrollTop = 0;
   if (beastModel) { beastScene.remove(beastModel); beastModel = null; mixer = null; }
-  const gltf = await loader.loadAsync(`models/creatures/${e.model || e.slug}.glb`);
+  const gltf = await loader.loadAsync(`models/creatures/${ASSET}${e.model || e.slug}.glb`);
   if (enemyBy(slug) !== e || $('#beast').classList.contains('hidden')) return;
   const m = gltf.scene;
   m.traverse((o) => { if (o.isMesh) { o.frustumCulled = false; const mt = o.material; if (mt) { mt.side = THREE.DoubleSide; if (mt.transparent) { mt.depthWrite = false; mt.blending = THREE.AdditiveBlending; o.renderOrder = 2; } } } });
@@ -448,7 +480,7 @@ function buildBossList() {
   const list = $('#bosslist'); list.innerHTML = '';
   D.bosses.forEach((b, i) => {
     const r = document.createElement('button'); r.className = 'brow'; r.dataset.boss = b.slug;
-    r.innerHTML = `<img alt="" src="thumbs/${b.enemy || b.slug}.webp"><div><div class="n">${esc(b.name)}</div><div class="s">${esc(b.sub || '')}</div></div><div class="o">${i + 1}</div>`;
+    r.innerHTML = `<img alt="" src="thumbs/${ASSET}${b.enemy || b.slug}.webp"><div><div class="n">${esc(b.name)}</div><div class="s">${esc(b.sub || '')}</div></div><div class="o">${i + 1}</div>`;
     list.appendChild(r);
   });
 }
@@ -542,7 +574,8 @@ function setView(v) {
   $('#v-map').classList.toggle('hidden', v !== 'map');
   $('#v-beasts').classList.toggle('hidden', v !== 'beasts');
   $('#v-bosses').classList.toggle('hidden', v !== 'bosses');
-  $('#parts').classList.toggle('hidden', v !== 'map');
+  $('#parts').classList.toggle('hidden', v !== 'map' || (D.parts || []).length < 2);
+  if (!D.map) return;
   if (v !== 'bosses' && bossOpen) closeBoss();
   if (v === 'map' && !bossOpen) { route.visible = true; setPart(part, false); }
 }

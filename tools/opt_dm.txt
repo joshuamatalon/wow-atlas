@@ -1,0 +1,9 @@
+*|--drop=EyeGlowB1
+mr-smite|--drop=Necklace1,Headdress1,MiscAccessory1
+goblin-engineer|--drop=Geoset1
+goblin-woodcarver|--drop=Geoset1
+goblin-craftsman|--drop=Geoset1
+goblin-shipbuilder|--drop=Geoset1
+sneed|--drop=Geoset1
+gilnid|--drop=Geoset1
+captain-greenskin|--drop=Geoset1

@@ -1,0 +1,509 @@
+{
+ "dungeon": {
+  "name": "The Deadmines"
+ },
+ "assets": "dm/",
+ "enemies": [
+  {
+   "slug": "rhahk-zor",
+   "name": "Rhahk'Zor",
+   "boss": true,
+   "type": "Boss",
+   "level": "19",
+   "abilities": [
+    {
+     "name": "Rhahk'Zor Slam",
+     "icon": 132939,
+     "line": "is a heavy hit that stuns its target for 3 seconds.",
+     "spell": 6304
+    }
+   ],
+   "npc": 644,
+   "display": 14403
+  },
+  {
+   "slug": "miner-johnson",
+   "name": "Miner Johnson",
+   "boss": true,
+   "type": "Rare elite",
+   "level": "19",
+   "abilities": [],
+   "npc": 3586,
+   "display": 556
+  },
+  {
+   "slug": "sneed-s-shredder",
+   "name": "Sneed's Shredder",
+   "boss": true,
+   "type": "Boss",
+   "level": "20",
+   "abilities": [
+    {
+     "name": "Distracting Pain",
+     "icon": 132278,
+     "line": "slows its target's spell casts for 15 seconds.",
+     "spell": 3603
+    },
+    {
+     "name": "Terrify",
+     "icon": 132270,
+     "line": "makes one player run in fear for 4 seconds, and a magic dispel ends it.",
+     "spell": 7399
+    },
+    {
+     "name": "Eject Sneed",
+     "icon": 135805,
+     "line": "drops Sneed out of the shredder for a second fight.",
+     "spell": 5141
+    }
+   ],
+   "npc": 642,
+   "display": 1269
+  },
+  {
+   "slug": "sneed",
+   "name": "Sneed",
+   "boss": true,
+   "type": "Boss",
+   "level": "20",
+   "abilities": [
+    {
+     "name": "Disarm",
+     "icon": 132343,
+     "line": "takes its target's weapon away for 6 seconds.",
+     "spell": 6713
+    }
+   ],
+   "npc": 643,
+   "display": 7125
+  },
+  {
+   "slug": "gilnid",
+   "name": "Gilnid",
+   "boss": true,
+   "type": "Boss",
+   "level": "20",
+   "abilities": [
+    {
+     "name": "Molten Metal",
+     "icon": 135807,
+     "line": "is a 2-second cast that burns its target and slows its movement and attacks by half for 15 seconds.",
+     "spell": 5213
+    }
+   ],
+   "npc": 1763,
+   "display": 7124
+  },
+  {
+   "slug": "mr-smite",
+   "name": "Mr. Smite",
+   "boss": true,
+   "type": "Boss",
+   "level": "20",
+   "abilities": [
+    {
+     "name": "Smite Stomp",
+     "icon": 132368,
+     "line": "stuns the whole group for 10 seconds.",
+     "spell": 6432
+    },
+    {
+     "name": "Smite Slam",
+     "icon": 132939,
+     "line": "is a heavy hit that stuns its target for 3 seconds.",
+     "spell": 6435
+    },
+    {
+     "name": "Nimble Reflexes",
+     "icon": 132223,
+     "line": "lets him parry most attacks for 8 seconds.",
+     "spell": 6264
+    },
+    {
+     "name": "Thrash",
+     "icon": 132152,
+     "line": "gives him two extra attacks at once.",
+     "spell": 3391
+    }
+   ],
+   "npc": 646,
+   "display": 2026
+  },
+  {
+   "slug": "captain-greenskin",
+   "name": "Captain Greenskin",
+   "boss": true,
+   "type": "Boss",
+   "level": "20",
+   "abilities": [
+    {
+     "name": "Poisoned Harpoon",
+     "icon": 132273,
+     "line": "is a 2-second cast that poisons its target for a minute until a poison cure removes it.",
+     "spell": 5208
+    },
+    {
+     "name": "Cleave",
+     "icon": 132338,
+     "line": "hits its target and the player nearest that target.",
+     "spell": 5532
+    }
+   ],
+   "npc": 647,
+   "display": 7113
+  },
+  {
+   "slug": "edwin-vancleef",
+   "name": "Edwin VanCleef",
+   "boss": true,
+   "type": "Boss",
+   "level": "21",
+   "abilities": [
+    {
+     "name": "VanCleef's Allies",
+     "icon": 136235,
+     "line": "calls two Defias Blackguards to his side.",
+     "spell": 5200
+    },
+    {
+     "name": "Thrash",
+     "icon": 132152,
+     "line": "gives him two extra attacks at once.",
+     "spell": 3391
+    }
+   ],
+   "npc": 639,
+   "display": 2029
+  },
+  {
+   "slug": "cookie",
+   "name": "Cookie",
+   "boss": true,
+   "type": "Boss",
+   "level": "20",
+   "abilities": [
+    {
+     "name": "Cookie's Cooking",
+     "icon": 135915,
+     "line": "is a 2-second cast that heals him, so interrupt it.",
+     "spell": 5174
+    },
+    {
+     "name": "Acid Splash",
+     "icon": 132793,
+     "line": "is a quick cast that burns nearby players for 30 seconds, and no cure removes it.",
+     "spell": 6306
+    }
+   ],
+   "npc": 645,
+   "display": 1305
+  },
+  {
+   "slug": "defias-miner",
+   "name": "Defias Miner",
+   "boss": false,
+   "type": "Normal",
+   "level": "17 to 18",
+   "abilities": [
+    {
+     "name": "Pierce Armor",
+     "icon": 136231,
+     "line": "halves its target's armor for 20 seconds.",
+     "spell": 6016
+    }
+   ],
+   "npc": 598,
+   "display": 308
+  },
+  {
+   "slug": "defias-strip-miner",
+   "name": "Defias Strip Miner",
+   "boss": false,
+   "type": "Normal",
+   "level": "18 to 19",
+   "abilities": [
+    {
+     "name": "Pierce Armor",
+     "icon": 136231,
+     "line": "halves its target's armor for 20 seconds.",
+     "spell": 6016
+    }
+   ],
+   "npc": 4416,
+   "display": 2438
+  },
+  {
+   "slug": "defias-overseer",
+   "name": "Defias Overseer",
+   "boss": false,
+   "type": "Elite",
+   "level": "17 to 18",
+   "abilities": [
+    {
+     "name": "Battle Command",
+     "icon": 132277,
+     "line": "makes nearby allies attack much faster for 6 seconds, and a magic dispel removes it.",
+     "spell": 5115
+    }
+   ],
+   "npc": 634,
+   "display": 2316
+  },
+  {
+   "slug": "defias-evoker",
+   "name": "Defias Evoker",
+   "boss": false,
+   "type": "Elite",
+   "level": "17 to 18",
+   "abilities": [
+    {
+     "name": "Flamestrike",
+     "icon": 135826,
+     "line": "is a 3-second cast that sets a patch of ground on fire for 8 seconds, so step out.",
+     "spell": 11829
+    },
+    {
+     "name": "Frost Armor",
+     "icon": 135843,
+     "line": "slows anyone who hits it in melee, and a magic dispel strips it.",
+     "spell": 12544
+    },
+    {
+     "name": "Quick Flame Ward",
+     "icon": 135824,
+     "line": "makes one ally immune to fire for 10 seconds.",
+     "spell": 4979
+    }
+   ],
+   "npc": 1729,
+   "display": 2318
+  },
+  {
+   "slug": "defias-watchman",
+   "name": "Defias Watchman",
+   "boss": false,
+   "type": "Elite",
+   "level": "16 to 18",
+   "abilities": [
+    {
+     "name": "Shoot",
+     "icon": 132222,
+     "line": "hits from 5 to 30 yards away.",
+     "spell": 6660
+    }
+   ],
+   "npc": 1725,
+   "display": 184
+  },
+  {
+   "slug": "defias-taskmaster",
+   "name": "Defias Taskmaster",
+   "boss": false,
+   "type": "Elite",
+   "level": "18 to 19",
+   "abilities": [
+    {
+     "name": "Piercing Shot",
+     "icon": 132312,
+     "line": "is a ranged shot that cuts its target's armor for 15 seconds.",
+     "spell": 6685
+    },
+    {
+     "name": "Shoot",
+     "icon": 132222,
+     "line": "hits from 5 to 30 yards away.",
+     "spell": 6660
+    }
+   ],
+   "npc": 4417,
+   "display": 2440
+  },
+  {
+   "slug": "defias-wizard",
+   "name": "Defias Wizard",
+   "boss": false,
+   "type": "Elite",
+   "level": "18 to 19",
+   "abilities": [
+    {
+     "name": "Chains of Ice",
+     "icon": 135834,
+     "line": "is a short cast that roots one player for 15 seconds, and a magic dispel frees them.",
+     "spell": 113
+    },
+    {
+     "name": "Fireball",
+     "icon": 135812,
+     "line": "is a 3-second cast that hits one player from up to 40 yards.",
+     "spell": 9053
+    },
+    {
+     "name": "Quick Flame Ward",
+     "icon": 135824,
+     "line": "makes one ally immune to fire for 10 seconds.",
+     "spell": 4979
+    }
+   ],
+   "npc": 4418,
+   "display": 2447
+  },
+  {
+   "slug": "goblin-woodcarver",
+   "name": "Goblin Woodcarver",
+   "boss": false,
+   "type": "Elite",
+   "level": "18 to 19",
+   "abilities": [
+    {
+     "name": "Axe Toss",
+     "icon": 132395,
+     "line": "is a thrown axe that stuns its target for 3 seconds from up to 20 yards.",
+     "spell": 6466
+    },
+    {
+     "name": "Cleave",
+     "icon": 132338,
+     "line": "hits its target and the player nearest that target.",
+     "spell": 5532
+    }
+   ],
+   "npc": 641,
+   "display": 7111
+  },
+  {
+   "slug": "goblin-craftsman",
+   "name": "Goblin Craftsman",
+   "boss": false,
+   "type": "Elite",
+   "level": "18 to 19",
+   "abilities": [
+    {
+     "name": "Melt Ore",
+     "icon": 135826,
+     "line": "is a short cast that burns players within 5 yards and slows them for 20 seconds.",
+     "spell": 5159
+    }
+   ],
+   "npc": 1731,
+   "display": 7110
+  },
+  {
+   "slug": "goblin-engineer",
+   "name": "Goblin Engineer",
+   "boss": false,
+   "type": "Elite",
+   "level": "18 to 19",
+   "abilities": [
+    {
+     "name": "Summon Remote-Controlled Golem",
+     "icon": 132281,
+     "line": "is a 3-second cast that calls a golem to fight for a minute, so interrupt it.",
+     "spell": 3605
+    },
+    {
+     "name": "Shoot",
+     "icon": 132222,
+     "line": "hits from 5 to 30 yards away.",
+     "spell": 6660
+    }
+   ],
+   "npc": 622,
+   "display": 7109
+  },
+  {
+   "slug": "remote-controlled-golem",
+   "name": "Remote-Controlled Golem",
+   "boss": false,
+   "type": "Elite",
+   "level": "18",
+   "abilities": [],
+   "npc": 2520,
+   "display": 1159,
+   "plain": "Goblin Engineers summon it, and it only swings in melee."
+  },
+  {
+   "slug": "goblin-shipbuilder",
+   "name": "Goblin Shipbuilder",
+   "boss": false,
+   "type": "Elite",
+   "level": "19 to 20",
+   "abilities": [],
+   "npc": 3947,
+   "display": 7112
+  },
+  {
+   "slug": "defias-pirate",
+   "name": "Defias Pirate",
+   "boss": false,
+   "type": "Elite",
+   "level": "19 to 20",
+   "abilities": [
+    {
+     "name": "Bloodsail Companion",
+     "icon": 132150,
+     "line": "brings a parrot, the Defias Companion, to fight beside it.",
+     "spell": 5172
+    }
+   ],
+   "npc": 657,
+   "display": 2347
+  },
+  {
+   "slug": "defias-companion",
+   "name": "Defias Companion",
+   "boss": false,
+   "type": "Normal",
+   "level": "14 to 15",
+   "abilities": [],
+   "npc": 3450,
+   "display": 5207,
+   "plain": "Defias Pirates bring this parrot, and it only pecks in melee."
+  },
+  {
+   "slug": "defias-squallshaper",
+   "name": "Defias Squallshaper",
+   "boss": false,
+   "type": "Elite",
+   "level": "19 to 20",
+   "abilities": [
+    {
+     "name": "Frost Nova",
+     "icon": 135848,
+     "line": "roots everyone near it for up to 8 seconds.",
+     "spell": 122
+    },
+    {
+     "name": "Fire Blast",
+     "icon": 135807,
+     "line": "is an instant fire hit from up to 20 yards.",
+     "spell": 2138
+    },
+    {
+     "name": "Frost Armor",
+     "icon": 135843,
+     "line": "slows anyone who hits it in melee, and a magic dispel strips it.",
+     "spell": 12544
+    }
+   ],
+   "npc": 1732,
+   "display": 2349
+  },
+  {
+   "slug": "defias-blackguard",
+   "name": "Defias Blackguard",
+   "boss": false,
+   "type": "Elite",
+   "level": "19 to 20",
+   "abilities": [
+    {
+     "name": "Stealth",
+     "icon": 132320,
+     "line": "keeps it hidden until it strikes.",
+     "spell": 1785
+    }
+   ],
+   "npc": 636,
+   "display": 2314
+  }
+ ]
+}
