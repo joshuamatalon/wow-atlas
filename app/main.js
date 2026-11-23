@@ -420,14 +420,18 @@ beast.camera.position.set(0, 1.6, 5.2); beast.controls.target.set(0, 1, 0);
 beast.controls.enablePan = false; beast.controls.minDistance = 1.5; beast.controls.maxDistance = 14;
 beast.bloom.strength = 0.25; beast.bloom.threshold = 0.85;
 
+const SKULL = '\u{1F480}';
 function buildBestiary() {
   const grid = $('#grid'); grid.innerHTML = '';
-  const secs = [['Bosses', D.enemies.filter((e) => e.boss)], ['Trash', D.enemies.filter((e) => !e.boss)]];
+  // trash with skulls comes first, most skulls on top; the sort is stable, so the data file's order holds inside a tier
+  const trash = D.enemies.filter((e) => !e.boss).sort((a, b) => (b.skull || 0) - (a.skull || 0));
+  const secs = [['Bosses', D.enemies.filter((e) => e.boss)], ['Trash', trash]];
   for (const [title, list] of secs) {
     const h = document.createElement('div'); h.className = 'gsec'; h.textContent = title; grid.appendChild(h);
+    if (title === 'Trash' && D.skullNote) { const n = document.createElement('div'); n.className = 'gnote'; n.textContent = D.skullNote; grid.appendChild(n); }
     for (const e of list) {
       const b = document.createElement('button'); b.className = 'cell' + (e.boss ? ' boss' : ''); b.dataset.beast = e.slug;
-      b.innerHTML = `<img loading="lazy" alt="" src="thumbs/${ASSET}${e.slug}.webp"><span>${esc(e.name)}</span>`;
+      b.innerHTML = `<img loading="lazy" alt="" src="thumbs/${ASSET}${e.slug}.webp">${e.skull ? `<i class="sk" aria-label="${e.skull} skull">${SKULL.repeat(e.skull)}</i>` : ''}<span>${esc(e.name)}</span>`;
       grid.appendChild(b);
     }
   }
@@ -437,6 +441,7 @@ async function openBeast(slug) {
   $('#grid').classList.add('hidden'); $('#beast').classList.remove('hidden');
   const card = $('#beastcard');
   let h = `<span class="tag ${e.boss ? 'boss' : ''}">${esc(e.type || (e.boss ? 'Boss' : 'Enemy'))}${e.level ? ' · Level ' + esc(e.level) : ''}</span><h2>${esc(e.name)}</h2>`;
+  if (e.skull) h += `<div class="skull"><b>${SKULL.repeat(e.skull)}</b>${esc(e.why || '')}</div>`;
   if (e.where) h += `<p><b>Where:</b> ${esc(e.where)}</p>`;
   if (e.tank) h += `<div class="role">You, the tank</div><p>${esc(e.tank)}</p>`;
   if (e.group) h += `<div class="role">The group</div><p>${esc(e.group)}</p>`;

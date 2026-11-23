@@ -11,11 +11,13 @@ fails, lines = [], []
 words = lambda s: len(re.findall(r"[A-Za-z0-9']+", s or ""))
 
 for e in d["enemies"]:
-    parts = [e.get("where"), e.get("tank"), e.get("group"), e.get("say"), e.get("plain")] + [a["name"] + " " + a["line"] for a in e["abilities"]]
+    parts = [e.get("why"), e.get("where"), e.get("tank"), e.get("group"), e.get("say"), e.get("plain")] + [a["name"] + " " + a["line"] for a in e["abilities"]]
     n = sum(words(p) for p in parts)
     if not e["boss"] and n > 50:
         fails.append(f"card over 50 words: {e['name']} ({n})")
     lines += [p for p in parts if p]
+if d.get("skullNote"):
+    lines.append(d["skullNote"])
 for s in d.get("stops", []):
     n = sum(words(t) for t in s["text"]) + words(s.get("say"))
     if n > 50:

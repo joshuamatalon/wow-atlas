@@ -224,7 +224,9 @@
     }
    ],
    "npc": 3853,
-   "display": 729
+   "display": 729,
+   "skull": 1,
+   "why": "Kill it before its shield goes up and wastes your casters' spells."
   },
   {
    "slug": "shadowfang-wolfguard",
@@ -247,7 +249,9 @@
     }
    ],
    "npc": 3854,
-   "display": 203
+   "display": 203,
+   "skull": 1,
+   "why": "Kill it before its worg, because it heals the worg."
   },
   {
    "slug": "wolfguard-worg",
@@ -281,7 +285,9 @@
     }
    ],
    "npc": 3855,
-   "display": 657
+   "display": 657,
+   "skull": 3,
+   "why": "Kill it first, because it halves your healer's casting speed."
   },
   {
    "slug": "shadowfang-glutton",
@@ -298,7 +304,9 @@
     }
    ],
    "npc": 3857,
-   "display": 202
+   "display": 202,
+   "skull": 1,
+   "why": "Focus it down, because it heals itself with every drain."
   },
   {
    "slug": "shadowfang-ragetooth",
@@ -315,7 +323,9 @@
     }
    ],
    "npc": 3859,
-   "display": 736
+   "display": 736,
+   "skull": 1,
+   "why": "Kill it soon, because its rage makes it hit you harder."
   },
   {
    "slug": "son-of-arugal",
@@ -332,7 +342,9 @@
     }
    ],
    "npc": 2529,
-   "display": 1098
+   "display": 1098,
+   "skull": 2,
+   "why": "Kill it early, because each cast puts a heavy curse on another player."
   },
   {
    "slug": "bleak-worg",
@@ -376,7 +388,9 @@
     }
    ],
    "npc": 3864,
-   "display": 1951
+   "display": 1951,
+   "skull": 1,
+   "why": "Kill it before the Shadow Chargers, because its stomp stuns everyone in melee."
   },
   {
    "slug": "shadow-charger",
@@ -409,7 +423,9 @@
     }
    ],
    "npc": 3866,
-   "display": 138628
+   "display": 138628,
+   "skull": 1,
+   "why": "Kill it before the Blood Seekers, because it disarms you."
   },
   {
    "slug": "blood-seeker",
@@ -443,7 +459,9 @@
     }
    ],
    "npc": 3875,
-   "display": 3229
+   "display": 3229,
+   "skull": 2,
+   "why": "Kill it early, because its curse keeps sending ghosts at one player."
   },
   {
    "slug": "haunting-spirit",
@@ -471,7 +489,9 @@
     }
    ],
    "npc": 3877,
-   "display": 3226
+   "display": 3226,
+   "skull": 1,
+   "why": "Kill it before it reaches a caster, because its scream silences everyone near it."
   },
   {
    "slug": "tormented-officer",
@@ -505,7 +525,9 @@
     }
    ],
    "npc": 211764,
-   "display": 114451
+   "display": 114451,
+   "skull": 1,
+   "why": "Its scream silences everyone near it, so it dies before it reaches a caster."
   },
   {
    "slug": "gemela",
@@ -560,7 +582,9 @@
     }
    ],
    "npc": 4627,
-   "display": 1131
+   "display": 1131,
+   "skull": 3,
+   "why": "Kill them one at a time, because each one heals the others."
   },
   {
    "slug": "sorcerer-ashcrombe",
@@ -594,5 +618,6 @@
    "npc": 4444,
    "display": 2689
   }
- ]
+ ],
+ "skullNote": "The skulls show the kill order in a pull. More skulls die first, and no skull dies last."
 }

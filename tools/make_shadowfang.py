@@ -105,7 +105,30 @@ enemy("sorcerer-ashcrombe", [], kind="Friendly", plain="He waits in a cell near 
 enemy("deathstalker-adamant", [], kind="Friendly", plain="He waits in a cell near the entrance, and he opens the courtyard door for the Horde.")
 enemy("deathstalker-vincent", [], kind="Friendly")
 
-data = {"dungeon": {"name": "Shadowfang Keep"}, "assets": "sfk/", "enemies": E}
+# Kill order for the tank's skull mark: more skulls die first, no skull dies last. Judged from the ability rows alone:
+# three for what stops the healer or heals the pack, two for curses that keep costing the group, one for what is worse
+# than the plain melee beside it. Bosses carry no mark. Pack make-up in Forever is not known, so tiers hold across packs.
+SKULLS = {
+    "shadowfang-darksoul": (3, "Kill it first, because it halves your healer's casting speed."),
+    "arugal-s-voidwalker": (3, "Kill them one at a time, because each one heals the others."),
+    "haunted-servitor": (2, "Kill it early, because its curse keeps sending ghosts at one player."),
+    "son-of-arugal": (2, "Kill it early, because each cast puts a heavy curse on another player."),
+    "shadowfang-moonwalker": (1, "Kill it before its shield goes up and wastes your casters' spells."),
+    "shadowfang-wolfguard": (1, "Kill it before its worg, because it heals the worg."),
+    "shadowfang-glutton": (1, "Focus it down, because it heals itself with every drain."),
+    "shadowfang-ragetooth": (1, "Kill it soon, because its rage makes it hit you harder."),
+    "wailing-guardsman": (1, "Kill it before it reaches a caster, because its scream silences everyone near it."),
+    "gefell": (1, "Its scream silences everyone near it, so it dies before it reaches a caster."),
+    "vile-bat": (1, "Kill it before the Blood Seekers, because it disarms you."),
+    "fel-steed": (1, "Kill it before the Shadow Chargers, because its stomp stuns everyone in melee."),
+}
+for e in E:
+    if e["slug"] in SKULLS:
+        e["skull"], e["why"] = SKULLS[e["slug"]]
+assert not set(SKULLS) - {e["slug"] for e in E}
+
+data = {"dungeon": {"name": "Shadowfang Keep"}, "assets": "sfk/", "enemies": E,
+        "skullNote": "The skulls show the kill order in a pull. More skulls die first, and no skull dies last."}
 out = R / "site/data/shadowfang.json"
 json.dump(data, open(out, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
 ip = R / "site/data/index.json"
