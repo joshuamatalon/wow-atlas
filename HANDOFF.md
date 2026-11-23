@@ -119,6 +119,26 @@ Deadmines and the Ruins are unchanged. The Shadowfang tiers sit in `SKULLS` in `
 rule in the comment above them. They are judged from the ability rows alone, because the pack make-up in Forever is
 not known and he has not run the keep. Correct them from Scribe after his first run.
 
+## Blackfathom Deeps: bestiary with skull marks (2026-11-23)
+Live at https://joshuamatalon.github.io/wow-atlas/?d=blackfathom, built the same way in `work/bfd` with assets in `bfd/`.
+
+- 33 creatures from the Wowhead Forever zone 719 list, which has 69 rows. 34 rows with ids above 200000 are left out:
+  they are a second, raid-sized set (bosses at level 9999, Blackfathom Elite, Tide Priestess, totems, Phantasmal
+  creatures). ForeverDB's file for dungeon 48 records Forever kills on the old ids (Ghamoo-ra 4887 and the rest), so
+  the old set is the one in the game. Baron Aquanis (hostile to the Horde only) and Hawk are left out too.
+- `tools/opt_bfd.txt` alpha-tests the naga and water elemental skins (their fin and splash cards drew black edges) and
+  drops the Voidwalker Minion's glow quads.
+- Mind Blast for Kelris comes from ForeverDB's boss list, not from Wowhead's rows; its facts are the live spell row in
+  `work/bfd/spells_extra.json`. Twilight Shadowmage's Wowhead list holds player debuffs, so its card keeps Shadow Bolt
+  and Summon Voidwalker by judgement. Aku'mai Fisher's only row is a pet skill, so its card has none.
+- Skull tiers sit in `SKULLS` in `tools/make_blackfathom.py`, judged from ability rows as for Shadowfang.
+- The water elementals lack the splash that Wowhead draws at their base.
+
+The header switch now holds four dungeons. On a phone it takes at most 62 percent of the row, scrolls sideways, and
+opens with the current dungeon in sight; the labels are Ruins, Deadmines, SFK and BFD (`short` in `index.json`).
+A card with no ability rows prints "It only swings in melee." unless the data gives `plain`; Razorclaw the Butcher and
+the friendly NPCs now carry their own `plain` lines.
+
 These items stay open for Shadowfang Keep.
 - The "rows above Dazed" rule failed on two pages. Archmage Arugal's list holds player debuffs (Faerie Fire, Hunter's
   Mark, Judgements), so his card keeps only Void Bolt, Arugal's Curse and Thundershock by judgement. Slavering Worg's
