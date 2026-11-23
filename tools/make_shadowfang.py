@@ -65,7 +65,7 @@ def enemy(slug, abilities, boss=False, kind=None, plain=None, view=None):
 
 # bosses, in the order the keep leads to them
 enemy("rethilgore", ["souldrain"], boss=True)
-enemy("razorclaw-the-butcher", [], boss=True)
+enemy("razorclaw-the-butcher", [], boss=True, plain="The game lists no ability for him.")
 enemy("baron-silverlaine", ["veil"], boss=True)
 enemy("commander-springvale", ["holylight", "hammer", "shield"], boss=True)
 enemy("odo-the-blindwatcher", ["howl"], boss=True)
@@ -103,7 +103,7 @@ enemy("arugal-s-voidwalker", ["offering"])
 # the prisoners
 enemy("sorcerer-ashcrombe", [], kind="Friendly", plain="He waits in a cell near the entrance, and he opens the courtyard door for the Alliance.")
 enemy("deathstalker-adamant", [], kind="Friendly", plain="He waits in a cell near the entrance, and he opens the courtyard door for the Horde.")
-enemy("deathstalker-vincent", [], kind="Friendly")
+enemy("deathstalker-vincent", [], kind="Friendly", plain="He ends a quest inside the keep.")
 
 # Kill order for the tank's skull mark: more skulls die first, no skull dies last. Judged from the ability rows alone:
 # three for what stops the healer or heals the pack, two for curses that keep costing the group, one for what is worse
@@ -133,7 +133,7 @@ out = R / "site/data/shadowfang.json"
 json.dump(data, open(out, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
 ip = R / "site/data/index.json"
 idx = [r for r in json.load(open(ip, encoding="utf-8")) if r["d"] != "shadowfang"]
-idx.append({"d": "shadowfang", "name": "Shadowfang Keep", "short": "Shadowfang"})
+idx.append({"d": "shadowfang", "name": "Shadowfang Keep", "short": "SFK"})
 json.dump(idx, open(ip, "w", encoding="utf-8"), indent=1)
 print("enemies", len(E), "->", out)
 print("roster without a card:", [s for s in seed if s not in {e["slug"] for e in E}])

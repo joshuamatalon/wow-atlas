@@ -1,0 +1,7 @@
+*|--drop=EyeGlowB1
+voidwalker-minion|--drop=Geoset5
+lady-sarevess|--cutout=sirenskinorange
+blackfathom-sea-witch|--cutout=sirenskinpurple
+blackfathom-myrmidon|--cutout=nagamaleskinblack
+aqua-guardian|--cutout=waterelementalskin
+aku-mai-servant|--cutout=waterelementalskin

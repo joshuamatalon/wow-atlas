@@ -29,7 +29,8 @@
    "level": "22",
    "abilities": [],
    "npc": 3886,
-   "display": 524
+   "display": 524,
+   "plain": "The game lists no ability for him."
   },
   {
    "slug": "baron-silverlaine",
@@ -616,7 +617,8 @@
    "level": "21",
    "abilities": [],
    "npc": 4444,
-   "display": 2689
+   "display": 2689,
+   "plain": "He ends a quest inside the keep."
   }
  ],
  "skullNote": "The skulls show the kill order in a pull. More skulls die first, and no skull dies last."

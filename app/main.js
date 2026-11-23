@@ -290,6 +290,8 @@ async function buildDungeonSwitch() {
       box.appendChild(a);
     }
     box.classList.remove('hidden');
+    const on = box.querySelector('.on');   // the row scrolls sideways on a phone; keep the open dungeon in sight
+    if (on) box.scrollLeft = Math.max(0, on.offsetLeft - box.offsetLeft - (box.clientWidth - on.offsetWidth) / 2);
   } catch (e) { /* no index file: one dungeon, no switch */ }
 }
 

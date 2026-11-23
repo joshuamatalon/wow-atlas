@@ -12,6 +12,11 @@
  {
   "d": "shadowfang",
   "name": "Shadowfang Keep",
-  "short": "Shadowfang"
+  "short": "SFK"
+ },
+ {
+  "d": "blackfathom",
+  "name": "Blackfathom Deeps",
+  "short": "BFD"
  }
 ]
