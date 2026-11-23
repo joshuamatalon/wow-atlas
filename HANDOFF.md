@@ -89,3 +89,35 @@ These items stay open for the Deadmines.
   bestiary alone.
 - The boss order on the grid is the Classic order from memory. Nothing in the Forever data confirms it.
 - `exchar3.js` should also repair the three Ruins character models in open item 1 above. It has not been run on them.
+
+## Shadowfang Keep: bestiary only (2026-11-23)
+Live at https://joshuamatalon.github.io/wow-atlas/?d=shadowfang. Josh typed "silvering keep"; no dungeon has that name,
+and Shadowfang Keep was his next dungeon, so that is what was built. The build follows the Deadmines one in the work
+subfolder `work/sfk` with assets in `sfk/`.
+
+- 35 creatures from the Wowhead Forever zone 209 list, which has 41 rows. Six are left out: Black Rat, Hawk, Crimson
+  Cannon and Arcane Elemental (no level on their rows), Arugal (npc 10000, the courtyard double of the Archmage) and
+  Sever (the Scourge event boss in Classic; whether Forever spawns him is not known).
+- 23 plain models from `ex1.js` and 12 character models from `exchar3.js`. `work/shots/compare_shadowfang.png` lays
+  all 35 beside Wowhead's renders, and all 35 match in body and outfit.
+- `tools/opt_sfk.txt` drops the Voidwalker's glow quads (they drew as black squares) and the Haunting Spirit's flare
+  quads and two loose parts that sit behind the body, and it makes the spirit's skin alpha-tested for her hair.
+- New helpers: `tools/export_all.sh SUB` runs the three client steps with ARGS from `tools/we_args.py`,
+  `tools/live_dump.py SUB` prints each creature's rows above Dazed with the live spell facts, `tools/glb_bbox.py`
+  finds a part that sits away from the body, and `tools/closeup.py` renders large views beside Wowhead's.
+
+Rebuild: fetch the zone page with `pw_get.py`, `wh_listview.py PAGE npcs work/sfk/wh/zone_npcs.json`, write
+`roster_npcs.json` without the six, then `wh_npcs.py`, `wh_abilities.py`, `creature_jobs.py sfk`, `sh tools/export_all.sh sfk`,
+`sh tools/opt_all.sh sfk`, `python -I tools/make_shadowfang.py`, then build, thumbs, compare, check and publish as above.
+Wowhead served a "confirm you are human" page for the last four NPC fetches; deleting those files and running
+`wh_npcs.py` again fetched them.
+
+These items stay open for Shadowfang Keep.
+- The "rows above Dazed" rule failed on two pages. Archmage Arugal's list holds player debuffs (Faerie Fire, Hunter's
+  Mark, Judgements), so his card keeps only Void Bolt, Arugal's Curse and Thundershock by judgement. Slavering Worg's
+  list is the tameable wolf's pet skills, so its card has none.
+- Razorclaw the Butcher, Shadow Charger, Gemela and Deathstalker Vincent have no ability rows on Wowhead Forever.
+- The two prisoner lines (who opens the courtyard door for which side) come from Classic memory plus the client's
+  `Ashcrombe's Unlock` spell row. Nothing in the Forever data confirms them.
+- Arugal's shoulder spikes lack the green glow that Wowhead draws. No creature holds a weapon, as in the Deadmines.
+- The boss order is ForeverDB's list for dungeon 33, with the rare Deathsworn Captain placed after Odo by judgement.
