@@ -1,0 +1,656 @@
+{
+ "dungeon": {
+  "name": "Blackfathom Deeps"
+ },
+ "assets": "bfd/",
+ "enemies": [
+  {
+   "slug": "ghamoo-ra",
+   "name": "Ghamoo-ra",
+   "boss": true,
+   "type": "Boss",
+   "level": "25",
+   "abilities": [
+    {
+     "name": "Trample",
+     "icon": 136063,
+     "line": "hits every player near him.",
+     "spell": 5568
+    }
+   ],
+   "npc": 4887,
+   "display": 5027
+  },
+  {
+   "slug": "lady-sarevess",
+   "name": "Lady Sarevess",
+   "boss": true,
+   "type": "Boss",
+   "level": "25",
+   "abilities": [
+    {
+     "name": "Forked Lightning",
+     "icon": 136015,
+     "line": "is a 2-second cast that hits everyone in a cone in front of her.",
+     "spell": 8435
+    },
+    {
+     "name": "Frost Nova",
+     "icon": 135848,
+     "line": "roots everyone near her for up to 8 seconds.",
+     "spell": 865
+    },
+    {
+     "name": "Slow",
+     "icon": 136091,
+     "line": "slows one player's attacks and movement for 10 seconds, and a magic dispel removes it.",
+     "spell": 246
+    },
+    {
+     "name": "Shoot",
+     "icon": 132222,
+     "line": "hits from up to 30 yards away.",
+     "spell": 6660
+    }
+   ],
+   "npc": 4831,
+   "display": 4979
+  },
+  {
+   "slug": "gelihast",
+   "name": "Gelihast",
+   "boss": true,
+   "type": "Boss",
+   "level": "26",
+   "abilities": [
+    {
+     "name": "Net",
+     "icon": 132149,
+     "line": "roots one player for 10 seconds from up to 20 yards.",
+     "spell": 6533
+    }
+   ],
+   "npc": 6243,
+   "display": 1773
+  },
+  {
+   "slug": "lorgus-jett",
+   "name": "Lorgus Jett",
+   "boss": true,
+   "type": "Boss",
+   "level": "26",
+   "abilities": [
+    {
+     "name": "Lightning Bolt",
+     "icon": 136048,
+     "line": "is a 3-second cast that hits one player from up to 40 yards.",
+     "spell": 12167
+    },
+    {
+     "name": "Lightning Shield",
+     "icon": 136051,
+     "line": "shocks players who hit him, and a magic dispel strips it.",
+     "spell": 12550
+    }
+   ],
+   "npc": 12902,
+   "display": 12822
+  },
+  {
+   "slug": "old-serra-kis",
+   "name": "Old Serra'kis",
+   "boss": true,
+   "type": "Boss",
+   "level": "26",
+   "abilities": [
+    {
+     "name": "Leech Pulse",
+     "icon": 135966,
+     "line": "drains health from players within 10 yards.",
+     "spell": 8433
+    }
+   ],
+   "npc": 4830,
+   "display": 1816
+  },
+  {
+   "slug": "twilight-lord-kelris",
+   "name": "Twilight Lord Kelris",
+   "boss": true,
+   "type": "Boss",
+   "level": "27",
+   "abilities": [
+    {
+     "name": "Sleep",
+     "icon": 136090,
+     "line": "is a short cast that puts players near its target to sleep for up to 10 seconds, and a magic dispel wakes them.",
+     "spell": 8399
+    },
+    {
+     "name": "Mind Blast",
+     "icon": 136224,
+     "line": "is a short cast that hits one player with shadow.",
+     "spell": 15587
+    }
+   ],
+   "npc": 4832,
+   "display": 4939
+  },
+  {
+   "slug": "aku-mai",
+   "name": "Aku'mai",
+   "boss": true,
+   "type": "Boss",
+   "level": "28",
+   "abilities": [
+    {
+     "name": "Poison Cloud",
+     "icon": 136077,
+     "line": "is a short cast that poisons players within 8 yards for 45 seconds, and a poison cure removes it.",
+     "spell": 3815
+    },
+    {
+     "name": "Frenzied Rage",
+     "icon": 136224,
+     "line": "makes it attack much faster for 5 seconds, with weaker hits.",
+     "spell": 3490
+    }
+   ],
+   "npc": 4829,
+   "display": 2837
+  },
+  {
+   "slug": "fallenroot-hellcaller",
+   "name": "Fallenroot Hellcaller",
+   "boss": false,
+   "type": "Elite",
+   "level": "24 to 25",
+   "abilities": [
+    {
+     "name": "Mana Burn",
+     "icon": 136170,
+     "line": "is a 3-second cast that drains a caster's mana, so interrupt it.",
+     "spell": 8129
+    },
+    {
+     "name": "Shadow Bolt",
+     "icon": 136197,
+     "line": "is a 3-second cast that hits one player from up to 40 yards.",
+     "spell": 9613
+    }
+   ],
+   "npc": 4799,
+   "display": 2021,
+   "skull": 2,
+   "why": "Kill it early, because it drains your healer's mana."
+  },
+  {
+   "slug": "fallenroot-shadowstalker",
+   "name": "Fallenroot Shadowstalker",
+   "boss": false,
+   "type": "Elite",
+   "level": "23 to 25",
+   "abilities": [
+    {
+     "name": "Curse of Weakness",
+     "icon": 136138,
+     "line": "weakens one player's physical attacks for 2 minutes, and a curse removal ends it.",
+     "spell": 6205
+    },
+    {
+     "name": "Sneak",
+     "icon": 132320,
+     "line": "keeps it hidden until it strikes.",
+     "spell": 22766
+    }
+   ],
+   "npc": 4798,
+   "display": 2014
+  },
+  {
+   "slug": "blackfathom-myrmidon",
+   "name": "Blackfathom Myrmidon",
+   "boss": false,
+   "type": "Elite",
+   "level": "22 to 25",
+   "abilities": [
+    {
+     "name": "Disarm",
+     "icon": 132343,
+     "line": "takes its target's weapon away for 10 seconds.",
+     "spell": 8379
+    }
+   ],
+   "npc": 4807,
+   "display": 4762,
+   "skull": 1,
+   "why": "Kill it before the Sea Witch, because it disarms you."
+  },
+  {
+   "slug": "blackfathom-sea-witch",
+   "name": "Blackfathom Sea Witch",
+   "boss": false,
+   "type": "Elite",
+   "level": "23 to 25",
+   "abilities": [
+    {
+     "name": "Frost Nova",
+     "icon": 135848,
+     "line": "roots everyone near it for up to 8 seconds.",
+     "spell": 122
+    },
+    {
+     "name": "Frost Armor",
+     "icon": 135843,
+     "line": "slows anyone who hits it in melee, and a magic dispel strips it.",
+     "spell": 12544
+    }
+   ],
+   "npc": 4805,
+   "display": 4982
+  },
+  {
+   "slug": "blindlight-oracle",
+   "name": "Blindlight Oracle",
+   "boss": false,
+   "type": "Elite",
+   "level": "25 to 26",
+   "abilities": [
+    {
+     "name": "Heal",
+     "icon": 135916,
+     "line": "is a 3-second cast that heals an ally, so interrupt it.",
+     "spell": 6063
+    },
+    {
+     "name": "Renew",
+     "icon": 135953,
+     "line": "heals an ally over 20 seconds, and a magic dispel removes it.",
+     "spell": 8362
+    },
+    {
+     "name": "Lightning Bolt",
+     "icon": 136048,
+     "line": "is a 3-second cast that hits one player from range.",
+     "spell": 9532
+    }
+   ],
+   "npc": 4820,
+   "display": 3617,
+   "skull": 3,
+   "why": "Kill it first, because it heals the other murlocs."
+  },
+  {
+   "slug": "blindlight-muckdweller",
+   "name": "Blindlight Muckdweller",
+   "boss": false,
+   "type": "Elite",
+   "level": "25 to 26",
+   "abilities": [
+    {
+     "name": "Leech Poison",
+     "icon": 136067,
+     "line": "poisons its target for 45 seconds and drains health to the murloc, and a poison cure removes it.",
+     "spell": 8382
+    }
+   ],
+   "npc": 4819,
+   "display": 11293,
+   "skull": 1,
+   "why": "Kill it soon, because its poison drains health back to it."
+  },
+  {
+   "slug": "murkshallow-snapclaw",
+   "name": "Murkshallow Snapclaw",
+   "boss": false,
+   "type": "Elite",
+   "level": "22 to 25",
+   "abilities": [
+    {
+     "name": "Disarm",
+     "icon": 132343,
+     "line": "takes its target's weapon away for 10 seconds.",
+     "spell": 8379
+    }
+   ],
+   "npc": 4815,
+   "display": 2835,
+   "skull": 1,
+   "why": "Kill it soon, because it disarms you."
+  },
+  {
+   "slug": "blindlight-murloc",
+   "name": "Blindlight Murloc",
+   "boss": false,
+   "type": "Elite",
+   "level": "22 to 25",
+   "abilities": [
+    {
+     "name": "Sunder Armor",
+     "icon": 132363,
+     "line": "cuts its target's armor, and it stacks.",
+     "spell": 7405
+    }
+   ],
+   "npc": 4818,
+   "display": 4920
+  },
+  {
+   "slug": "murkshallow-softshell",
+   "name": "Murkshallow Softshell",
+   "boss": false,
+   "type": "Normal",
+   "level": "25",
+   "abilities": [],
+   "npc": 4977,
+   "display": 1819
+  },
+  {
+   "slug": "twilight-acolyte",
+   "name": "Twilight Acolyte",
+   "boss": false,
+   "type": "Elite",
+   "level": "24 to 25",
+   "abilities": [
+    {
+     "name": "Heal",
+     "icon": 135915,
+     "line": "is a 3-second cast that heals an ally, so interrupt it.",
+     "spell": 2055
+    },
+    {
+     "name": "Renew",
+     "icon": 135953,
+     "line": "is a 2-second cast that heals an ally for 20 seconds, and a magic dispel removes it.",
+     "spell": 8362
+    }
+   ],
+   "npc": 4809,
+   "display": 2882,
+   "skull": 3,
+   "why": "Kill it first, because it heals the others."
+  },
+  {
+   "slug": "twilight-elementalist",
+   "name": "Twilight Elementalist",
+   "boss": false,
+   "type": "Elite",
+   "level": "26 to 27",
+   "abilities": [
+    {
+     "name": "Earth Shock",
+     "icon": 136026,
+     "line": "is an instant hit that stops a player's cast.",
+     "spell": 8046
+    },
+    {
+     "name": "Frost Shock",
+     "icon": 135849,
+     "line": "halves one player's movement speed for 8 seconds.",
+     "spell": 8056
+    },
+    {
+     "name": "Flame Shock",
+     "icon": 135813,
+     "line": "burns one player for 12 seconds.",
+     "spell": 8052
+    }
+   ],
+   "npc": 4814,
+   "display": 2890,
+   "skull": 2,
+   "why": "Kill it early, because its Earth Shock stops your healer's casts."
+  },
+  {
+   "slug": "twilight-shadowmage",
+   "name": "Twilight Shadowmage",
+   "boss": false,
+   "type": "Elite",
+   "level": "26 to 27",
+   "abilities": [
+    {
+     "name": "Shadow Bolt",
+     "icon": 136197,
+     "line": "is a 3-second cast that hits one player from up to 40 yards.",
+     "spell": 9613
+    },
+    {
+     "name": "Summon Voidwalker",
+     "icon": 136221,
+     "line": "brings a Voidwalker Minion to fight beside it.",
+     "spell": 12746
+    }
+   ],
+   "npc": 4813,
+   "display": 2876,
+   "skull": 2,
+   "why": "Kill it early, because its Shadow Bolts hit your group from range."
+  },
+  {
+   "slug": "voidwalker-minion",
+   "name": "Voidwalker Minion",
+   "boss": false,
+   "type": "Normal",
+   "level": "10 to 57",
+   "abilities": [],
+   "npc": 8996,
+   "display": 1132,
+   "plain": "Twilight Shadowmages bring it, and it only swings in melee."
+  },
+  {
+   "slug": "twilight-aquamancer",
+   "name": "Twilight Aquamancer",
+   "boss": false,
+   "type": "Elite",
+   "level": "25 to 26",
+   "abilities": [
+    {
+     "name": "Frostbolt",
+     "icon": 135846,
+     "line": "is a 3-second cast that hits one player and slows them for 4 seconds.",
+     "spell": 9672
+    },
+    {
+     "name": "Summon Aqua Guardian",
+     "icon": 135864,
+     "line": "brings an Aqua Guardian to fight beside it.",
+     "spell": 8372
+    }
+   ],
+   "npc": 4811,
+   "display": 2886,
+   "skull": 1,
+   "why": "Kill it before the melee, because it casts from range."
+  },
+  {
+   "slug": "aqua-guardian",
+   "name": "Aqua Guardian",
+   "boss": false,
+   "type": "Normal",
+   "level": "22 to 25",
+   "abilities": [
+    {
+     "name": "Frost Nova",
+     "icon": 135848,
+     "line": "roots everyone near it for up to 8 seconds.",
+     "spell": 122
+    }
+   ],
+   "npc": 6047,
+   "display": 525
+  },
+  {
+   "slug": "twilight-loreseeker",
+   "name": "Twilight Loreseeker",
+   "boss": false,
+   "type": "Elite",
+   "level": "24 to 25",
+   "abilities": [
+    {
+     "name": "Slow",
+     "icon": 136091,
+     "line": "slows one player's attacks and movement for 20 seconds, and a magic dispel removes it.",
+     "spell": 18972
+    },
+    {
+     "name": "Enlarge",
+     "icon": 136101,
+     "line": "is a 2-second cast that makes an ally hit harder for a minute, and a magic dispel removes it.",
+     "spell": 8365
+    }
+   ],
+   "npc": 4812,
+   "display": 2894,
+   "skull": 1,
+   "why": "Kill it before the melee, because it slows your attacks."
+  },
+  {
+   "slug": "twilight-reaver",
+   "name": "Twilight Reaver",
+   "boss": false,
+   "type": "Elite",
+   "level": "25 to 26",
+   "abilities": [
+    {
+     "name": "Arcing Smash",
+     "icon": 132338,
+     "line": "hits everyone in a cone in front of it.",
+     "spell": 8374
+    }
+   ],
+   "npc": 4810,
+   "display": 2898
+  },
+  {
+   "slug": "aku-mai-servant",
+   "name": "Aku'mai Servant",
+   "boss": false,
+   "type": "Elite",
+   "level": "26",
+   "abilities": [
+    {
+     "name": "Frostbolt Volley",
+     "icon": 135846,
+     "line": "is a 2-second cast that hits players within 20 yards and halves their movement.",
+     "spell": 8398
+    },
+    {
+     "name": "Frost Nova",
+     "icon": 135848,
+     "line": "roots everyone near her for up to 8 seconds.",
+     "spell": 865
+    }
+   ],
+   "npc": 4978,
+   "display": 110,
+   "skull": 2,
+   "why": "Kill it early, because its volley hits everyone near it."
+  },
+  {
+   "slug": "aku-mai-snapjaw",
+   "name": "Aku'mai Snapjaw",
+   "boss": false,
+   "type": "Elite",
+   "level": "26 to 27",
+   "abilities": [
+    {
+     "name": "Ravage",
+     "icon": 132152,
+     "line": "stuns its target for 3 seconds.",
+     "spell": 8391
+    }
+   ],
+   "npc": 4825,
+   "display": 5026,
+   "skull": 1,
+   "why": "Kill it soon, because its bite stuns you."
+  },
+  {
+   "slug": "aku-mai-fisher",
+   "name": "Aku'mai Fisher",
+   "boss": false,
+   "type": "Elite",
+   "level": "23 to 24",
+   "abilities": [],
+   "npc": 4824,
+   "display": 1244
+  },
+  {
+   "slug": "deep-pool-threshfin",
+   "name": "Deep Pool Threshfin",
+   "boss": false,
+   "type": "Elite",
+   "level": "24 to 26",
+   "abilities": [
+    {
+     "name": "Tendon Rip",
+     "icon": 132109,
+     "line": "slows its target's movement for 8 seconds.",
+     "spell": 3604
+    }
+   ],
+   "npc": 4827,
+   "display": 2836
+  },
+  {
+   "slug": "snapping-crustacean",
+   "name": "Snapping Crustacean",
+   "boss": false,
+   "type": "Elite",
+   "level": "23 to 25",
+   "abilities": [
+    {
+     "name": "Quick Snap",
+     "icon": 132278,
+     "line": "is an extra melee hit on its target.",
+     "spell": 4160
+    }
+   ],
+   "npc": 4822,
+   "display": 1001
+  },
+  {
+   "slug": "skittering-crustacean",
+   "name": "Skittering Crustacean",
+   "boss": false,
+   "type": "Elite",
+   "level": "22 to 25",
+   "abilities": [],
+   "npc": 4821,
+   "display": 981
+  },
+  {
+   "slug": "barbed-crustacean",
+   "name": "Barbed Crustacean",
+   "boss": false,
+   "type": "Elite",
+   "level": "25 to 26",
+   "abilities": [],
+   "npc": 4823,
+   "display": 9565
+  },
+  {
+   "slug": "argent-guard-thaelrid",
+   "name": "Argent Guard Thaelrid",
+   "boss": false,
+   "type": "Friendly",
+   "level": "20",
+   "abilities": [],
+   "npc": 4787,
+   "display": 4946,
+   "plain": "He starts a quest inside the dungeon."
+  },
+  {
+   "slug": "morridune",
+   "name": "Morridune",
+   "boss": false,
+   "type": "Friendly",
+   "level": "27",
+   "abilities": [],
+   "npc": 6729,
+   "display": 5465,
+   "plain": "She is friendly to the Alliance."
+  }
+ ],
+ "skullNote": "The skulls show the kill order in a pull. More skulls die first, and no skull dies last."
+}
