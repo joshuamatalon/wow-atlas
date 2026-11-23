@@ -1,0 +1,3 @@
+*|--drop=EyeGlowB1
+arugal-s-voidwalker|--drop=Geoset5
+haunting-spirit|--drop=Geoset9,Geoset10,Geoset11,Geoset12,Geoset13,Geoset14,Geoset15 --cutout=bansheeskin

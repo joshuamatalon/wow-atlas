@@ -8,5 +8,10 @@
   "d": "deadmines",
   "name": "The Deadmines",
   "short": "Deadmines"
+ },
+ {
+  "d": "shadowfang",
+  "name": "Shadowfang Keep",
+  "short": "Shadowfang"
  }
 ]
