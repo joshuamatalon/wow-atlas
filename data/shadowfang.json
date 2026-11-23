@@ -1,0 +1,598 @@
+{
+ "dungeon": {
+  "name": "Shadowfang Keep"
+ },
+ "assets": "sfk/",
+ "enemies": [
+  {
+   "slug": "rethilgore",
+   "name": "Rethilgore",
+   "boss": true,
+   "type": "Boss",
+   "level": "20",
+   "abilities": [
+    {
+     "name": "Soul Drain",
+     "icon": 136169,
+     "line": "is a 2-second cast that roots one player for 10 seconds and drains health to him.",
+     "spell": 7295
+    }
+   ],
+   "npc": 3914,
+   "display": 524
+  },
+  {
+   "slug": "razorclaw-the-butcher",
+   "name": "Razorclaw the Butcher",
+   "boss": true,
+   "type": "Boss",
+   "level": "22",
+   "abilities": [],
+   "npc": 3886,
+   "display": 524
+  },
+  {
+   "slug": "baron-silverlaine",
+   "name": "Baron Silverlaine",
+   "boss": true,
+   "type": "Boss",
+   "level": "24",
+   "abilities": [
+    {
+     "name": "Veil of Shadow",
+     "icon": 136160,
+     "line": "is a short cast that cuts the healing one player receives by three quarters for 15 seconds.",
+     "spell": 7068
+    }
+   ],
+   "npc": 3887,
+   "display": 3222
+  },
+  {
+   "slug": "commander-springvale",
+   "name": "Commander Springvale",
+   "boss": true,
+   "type": "Boss",
+   "level": "24",
+   "abilities": [
+    {
+     "name": "Holy Light",
+     "icon": 135920,
+     "line": "is a short cast that heals him or an ally, so interrupt it.",
+     "spell": 1026
+    },
+    {
+     "name": "Hammer of Justice",
+     "icon": 135963,
+     "line": "stuns one player for 4 seconds from up to 10 yards, and a magic dispel ends it.",
+     "spell": 5588
+    },
+    {
+     "name": "Divine Shield",
+     "icon": 135896,
+     "line": "makes him immune to everything for 10 seconds.",
+     "spell": 642
+    }
+   ],
+   "npc": 4278,
+   "display": 3223
+  },
+  {
+   "slug": "odo-the-blindwatcher",
+   "name": "Odo the Blindwatcher",
+   "boss": true,
+   "type": "Boss",
+   "level": "24",
+   "abilities": [
+    {
+     "name": "Howling Rage",
+     "icon": 132091,
+     "line": "is a 5-second cast that makes him and allies within 10 yards hit harder.",
+     "spell": 7481
+    }
+   ],
+   "npc": 4279,
+   "display": 522
+  },
+  {
+   "slug": "deathsworn-captain",
+   "name": "Deathsworn Captain",
+   "boss": true,
+   "type": "Rare elite",
+   "level": "25",
+   "abilities": [
+    {
+     "name": "Cleave",
+     "icon": 132338,
+     "line": "hits its target and the player nearest that target.",
+     "spell": 5532
+    },
+    {
+     "name": "Hamstring",
+     "icon": 132316,
+     "line": "slows its target's movement by more than half for 10 seconds.",
+     "spell": 9080
+    }
+   ],
+   "npc": 3872,
+   "display": 3224
+  },
+  {
+   "slug": "fenrus-the-devourer",
+   "name": "Fenrus the Devourer",
+   "boss": true,
+   "type": "Boss",
+   "level": "25",
+   "abilities": [
+    {
+     "name": "Toxic Saliva",
+     "icon": 136016,
+     "line": "poisons its target for 2 minutes and drains mana, and a poison cure removes it.",
+     "spell": 7125
+    }
+   ],
+   "npc": 4274,
+   "display": 2352
+  },
+  {
+   "slug": "wolf-master-nandos",
+   "name": "Wolf Master Nandos",
+   "boss": true,
+   "type": "Boss",
+   "level": "25",
+   "abilities": [
+    {
+     "name": "Call Bleak Worg",
+     "icon": 136130,
+     "line": "is a short cast that brings a Bleak Worg for 4 minutes.",
+     "spell": 7487
+    },
+    {
+     "name": "Call Slavering Worg",
+     "icon": 136130,
+     "line": "is a short cast that brings a Slavering Worg for 4 minutes.",
+     "spell": 7488
+    },
+    {
+     "name": "Call Lupine Horror",
+     "icon": 136130,
+     "line": "is a short cast that brings a Lupine Horror for 4 minutes.",
+     "spell": 7489
+    }
+   ],
+   "npc": 3927,
+   "display": 11179
+  },
+  {
+   "slug": "archmage-arugal",
+   "name": "Archmage Arugal",
+   "boss": true,
+   "type": "Boss",
+   "level": "26",
+   "abilities": [
+    {
+     "name": "Void Bolt",
+     "icon": 136197,
+     "line": "is a 3-second cast that hits one player with shadow from any range.",
+     "spell": 7588
+    },
+    {
+     "name": "Arugal's Curse",
+     "icon": 136160,
+     "line": "turns one player into a worgen under his control for 10 seconds, and a curse removal ends it.",
+     "spell": 7621
+    },
+    {
+     "name": "Thundershock",
+     "icon": 135990,
+     "line": "stuns players within 5 yards for 5 seconds.",
+     "spell": 7803
+    }
+   ],
+   "npc": 4275,
+   "display": 2353
+  },
+  {
+   "slug": "shadowfang-whitescalp",
+   "name": "Shadowfang Whitescalp",
+   "boss": false,
+   "type": "Elite",
+   "level": "18 to 19",
+   "abilities": [
+    {
+     "name": "Frost Armor",
+     "icon": 135843,
+     "line": "slows anyone who hits it in melee, and a magic dispel strips it.",
+     "spell": 12544
+    }
+   ],
+   "npc": 3851,
+   "display": 729
+  },
+  {
+   "slug": "shadowfang-moonwalker",
+   "name": "Shadowfang Moonwalker",
+   "boss": false,
+   "type": "Elite",
+   "level": "19 to 20",
+   "abilities": [
+    {
+     "name": "Anti-Magic Shield",
+     "icon": 136120,
+     "line": "is a 2-second cast that makes it immune to magic for 10 seconds, so interrupt it.",
+     "spell": 7121
+    }
+   ],
+   "npc": 3853,
+   "display": 729
+  },
+  {
+   "slug": "shadowfang-wolfguard",
+   "name": "Shadowfang Wolfguard",
+   "boss": false,
+   "type": "Elite",
+   "level": "20 to 21",
+   "abilities": [
+    {
+     "name": "Dark Restore",
+     "icon": 132179,
+     "line": "is a 2-second cast that heals its worg, so interrupt it.",
+     "spell": 7106
+    },
+    {
+     "name": "Summon Wolfguard Worg",
+     "icon": 132136,
+     "line": "brings a Wolfguard Worg to fight beside it.",
+     "spell": 7107
+    }
+   ],
+   "npc": 3854,
+   "display": 203
+  },
+  {
+   "slug": "wolfguard-worg",
+   "name": "Wolfguard Worg",
+   "boss": false,
+   "type": "Normal",
+   "level": "20 to 21",
+   "abilities": [],
+   "npc": 5058,
+   "display": 246,
+   "plain": "Shadowfang Wolfguards bring it, and it only bites in melee."
+  },
+  {
+   "slug": "shadowfang-darksoul",
+   "name": "Shadowfang Darksoul",
+   "boss": false,
+   "type": "Elite",
+   "level": "20 to 21",
+   "abilities": [
+    {
+     "name": "Shadow Word: Pain",
+     "icon": 136207,
+     "line": "burns one player with shadow for 18 seconds, and a magic dispel removes it.",
+     "spell": 970
+    },
+    {
+     "name": "Befuddlement",
+     "icon": 136175,
+     "line": "halves one player's casting speed for 15 seconds, and a magic dispel removes it.",
+     "spell": 8140
+    }
+   ],
+   "npc": 3855,
+   "display": 657
+  },
+  {
+   "slug": "shadowfang-glutton",
+   "name": "Shadowfang Glutton",
+   "boss": false,
+   "type": "Elite",
+   "level": "21 to 22",
+   "abilities": [
+    {
+     "name": "Blood Tap",
+     "icon": 132278,
+     "line": "drains its target's health and heals the Glutton for up to twice as much.",
+     "spell": 7122
+    }
+   ],
+   "npc": 3857,
+   "display": 202
+  },
+  {
+   "slug": "shadowfang-ragetooth",
+   "name": "Shadowfang Ragetooth",
+   "boss": false,
+   "type": "Elite",
+   "level": "23 to 24",
+   "abilities": [
+    {
+     "name": "Wild Rage",
+     "icon": 136162,
+     "line": "makes it hit harder for a minute.",
+     "spell": 7072
+    }
+   ],
+   "npc": 3859,
+   "display": 736
+  },
+  {
+   "slug": "son-of-arugal",
+   "name": "Son of Arugal",
+   "boss": false,
+   "type": "Elite",
+   "level": "24 to 25",
+   "abilities": [
+    {
+     "name": "Arugal's Gift",
+     "icon": 136130,
+     "line": "is a short cast that curses one player for 5 minutes, and a curse removal ends it.",
+     "spell": 7124
+    }
+   ],
+   "npc": 2529,
+   "display": 1098
+  },
+  {
+   "slug": "bleak-worg",
+   "name": "Bleak Worg",
+   "boss": false,
+   "type": "Elite",
+   "level": "18 to 25",
+   "abilities": [
+    {
+     "name": "Wavering Will",
+     "icon": 136119,
+     "line": "slows its target's attacks and casts for a minute and its movement too, and a magic dispel removes it.",
+     "spell": 7127
+    }
+   ],
+   "npc": 3861,
+   "display": 801
+  },
+  {
+   "slug": "slavering-worg",
+   "name": "Slavering Worg",
+   "boss": false,
+   "type": "Elite",
+   "level": "18 to 25",
+   "abilities": [],
+   "npc": 3862,
+   "display": 11421
+  },
+  {
+   "slug": "fel-steed",
+   "name": "Fel Steed",
+   "boss": false,
+   "type": "Elite",
+   "level": "19 to 20",
+   "abilities": [
+    {
+     "name": "Fel Stomp",
+     "icon": 132368,
+     "line": "stuns players within 10 yards for 3 seconds and raises the physical damage they take.",
+     "spell": 7139
+    }
+   ],
+   "npc": 3864,
+   "display": 1951
+  },
+  {
+   "slug": "shadow-charger",
+   "name": "Shadow Charger",
+   "boss": false,
+   "type": "Elite",
+   "level": "20 to 21",
+   "abilities": [],
+   "npc": 3865,
+   "display": 1952
+  },
+  {
+   "slug": "vile-bat",
+   "name": "Vile Bat",
+   "boss": false,
+   "type": "Elite",
+   "level": "22 to 23",
+   "abilities": [
+    {
+     "name": "Diving Sweep",
+     "icon": 132338,
+     "line": "hits its target and the players nearest that target.",
+     "spell": 7145
+    },
+    {
+     "name": "Disarm",
+     "icon": 132343,
+     "line": "takes its target's weapon away for 6 seconds.",
+     "spell": 6713
+    }
+   ],
+   "npc": 3866,
+   "display": 138628
+  },
+  {
+   "slug": "blood-seeker",
+   "name": "Blood Seeker",
+   "boss": false,
+   "type": "Elite",
+   "level": "23 to 24",
+   "abilities": [
+    {
+     "name": "Expose Weakness",
+     "icon": 132109,
+     "line": "raises the physical damage its target takes for 5 seconds, and a magic dispel removes it.",
+     "spell": 7140
+    }
+   ],
+   "npc": 3868,
+   "display": 1955
+  },
+  {
+   "slug": "haunted-servitor",
+   "name": "Haunted Servitor",
+   "boss": false,
+   "type": "Elite",
+   "level": "20 to 21",
+   "abilities": [
+    {
+     "name": "Haunting Spirits",
+     "icon": 136123,
+     "line": "is a 2-second cast that curses its target for 5 minutes, and ghosts come for that player.",
+     "spell": 7057
+    }
+   ],
+   "npc": 3875,
+   "display": 3229
+  },
+  {
+   "slug": "haunting-spirit",
+   "name": "Haunting Spirit",
+   "boss": false,
+   "type": "Normal",
+   "level": "21 to 22",
+   "abilities": [],
+   "npc": 4958,
+   "display": 985,
+   "plain": "A Haunted Servitor's curse calls it, and it only swings in melee."
+  },
+  {
+   "slug": "wailing-guardsman",
+   "name": "Wailing Guardsman",
+   "boss": false,
+   "type": "Elite",
+   "level": "21 to 22",
+   "abilities": [
+    {
+     "name": "Screams of the Past",
+     "icon": 136164,
+     "line": "silences players within 5 yards for 5 seconds, and a magic dispel ends it.",
+     "spell": 7074
+    }
+   ],
+   "npc": 3877,
+   "display": 3226
+  },
+  {
+   "slug": "tormented-officer",
+   "name": "Tormented Officer",
+   "boss": false,
+   "type": "Elite",
+   "level": "23 to 24",
+   "abilities": [
+    {
+     "name": "Forsaken Skills",
+     "icon": 136121,
+     "line": "is a short cast that curses its target for 5 minutes and lowers one skill again and again.",
+     "spell": 7054
+    }
+   ],
+   "npc": 3873,
+   "display": 3225
+  },
+  {
+   "slug": "gefell",
+   "name": "Gefell",
+   "boss": false,
+   "type": "Rare elite",
+   "level": "21 to 22",
+   "abilities": [
+    {
+     "name": "Screams of the Past",
+     "icon": 136164,
+     "line": "silences players within 5 yards for 5 seconds, and a magic dispel ends it.",
+     "spell": 7074
+    }
+   ],
+   "npc": 211764,
+   "display": 114451
+  },
+  {
+   "slug": "gemela",
+   "name": "Gemela",
+   "boss": false,
+   "type": "Rare elite",
+   "level": "21 to 22",
+   "abilities": [],
+   "npc": 211765,
+   "display": 114452
+  },
+  {
+   "slug": "lupine-horror",
+   "name": "Lupine Horror",
+   "boss": false,
+   "type": "Elite",
+   "level": "24 to 25",
+   "abilities": [
+    {
+     "name": "Summon Lupine Delusions",
+     "icon": 136222,
+     "line": "is a 1-second cast that calls two Lupine Delusions for 4 minutes.",
+     "spell": 7132
+    }
+   ],
+   "npc": 3863,
+   "display": 2446
+  },
+  {
+   "slug": "lupine-delusion",
+   "name": "Lupine Delusion",
+   "boss": false,
+   "type": "Normal",
+   "level": "24 to 25",
+   "abilities": [],
+   "npc": 5097,
+   "display": 3123,
+   "plain": "A Lupine Horror calls two of them, and they only swing in melee."
+  },
+  {
+   "slug": "arugal-s-voidwalker",
+   "name": "Arugal's Voidwalker",
+   "boss": false,
+   "type": "Normal",
+   "level": "24 to 25",
+   "abilities": [
+    {
+     "name": "Dark Offering",
+     "icon": 136163,
+     "line": "heals an ally within 10 yards.",
+     "spell": 7154
+    }
+   ],
+   "npc": 4627,
+   "display": 1131
+  },
+  {
+   "slug": "sorcerer-ashcrombe",
+   "name": "Sorcerer Ashcrombe",
+   "boss": false,
+   "type": "Friendly",
+   "level": "18",
+   "abilities": [],
+   "npc": 3850,
+   "display": 2005,
+   "plain": "He waits in a cell near the entrance, and he opens the courtyard door for the Alliance."
+  },
+  {
+   "slug": "deathstalker-adamant",
+   "name": "Deathstalker Adamant",
+   "boss": false,
+   "type": "Friendly",
+   "level": "18",
+   "abilities": [],
+   "npc": 3849,
+   "display": 2006,
+   "plain": "He waits in a cell near the entrance, and he opens the courtyard door for the Horde."
+  },
+  {
+   "slug": "deathstalker-vincent",
+   "name": "Deathstalker Vincent",
+   "boss": false,
+   "type": "Friendly",
+   "level": "21",
+   "abilities": [],
+   "npc": 4444,
+   "display": 2689
+  }
+ ]
+}
