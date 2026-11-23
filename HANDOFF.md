@@ -112,6 +112,13 @@ Rebuild: fetch the zone page with `pw_get.py`, `wh_listview.py PAGE npcs work/sf
 Wowhead served a "confirm you are human" page for the last four NPC fetches; deleting those files and running
 `wh_npcs.py` again fetched them.
 
+Skull marks (2026-11-23, his ask): an enemy in a data file may carry `skull` (1 to 3) and `why` (one sentence). The
+grid sorts the trash with the most skulls first and draws them on the tile, the card shows them above the abilities,
+and `skullNote` is the caption under the Trash heading. A data file without those fields draws nothing, so the
+Deadmines and the Ruins are unchanged. The Shadowfang tiers sit in `SKULLS` in `tools/make_shadowfang.py`, with the
+rule in the comment above them. They are judged from the ability rows alone, because the pack make-up in Forever is
+not known and he has not run the keep. Correct them from Scribe after his first run.
+
 These items stay open for Shadowfang Keep.
 - The "rows above Dazed" rule failed on two pages. Archmage Arugal's list holds player debuffs (Faerie Fire, Hunter's
   Mark, Judgements), so his card keeps only Void Bolt, Arugal's Curse and Thundershock by judgement. Slavering Worg's
