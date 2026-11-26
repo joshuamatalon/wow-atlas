@@ -425,12 +425,30 @@ beast.bloom.strength = 0.25; beast.bloom.threshold = 0.85;
 const SKULL = '\u{1F480}';
 function buildBestiary() {
   const grid = $('#grid'); grid.innerHTML = '';
-  // trash with skulls comes first, most skulls on top; the sort is stable, so the data file's order holds inside a tier
-  const trash = D.enemies.filter((e) => !e.boss).sort((a, b) => (b.skull || 0) - (a.skull || 0));
-  const secs = [['Bosses', D.enemies.filter((e) => e.boss)], ['Trash', trash]];
-  for (const [title, list] of secs) {
-    const h = document.createElement('div'); h.className = 'gsec'; h.textContent = title; grid.appendChild(h);
-    if (title === 'Trash' && D.skullNote) { const n = document.createElement('div'); n.className = 'gnote'; n.textContent = D.skullNote; grid.appendChild(n); }
+  const add = (cls, text) => { const n = document.createElement('div'); n.className = cls; n.textContent = text; grid.appendChild(n); return n; };
+  // the loot he rolls need on sits above everything; a row opens the card of the enemy that drops it
+  if ((D.needs || []).length) {
+    add('gsec needhead', D.needTitle || 'Roll need');
+    const box = document.createElement('div'); box.className = 'needs';
+    box.innerHTML = D.needs.map((n) => `<button class="need" ${n.from ? `data-beast="${n.from}"` : 'disabled'}><img alt="" src="icons/${n.icon}.png"><div><b>${esc(n.name)}</b><span>${esc(n.slot)} · ${esc(n.where)}</span></div></button>`).join('');
+    grid.appendChild(box);
+  }
+  // most skulls first inside a section; the sort is stable, so the data file's order holds inside a tier, and bosses close a section
+  const bySkull = (list) => list.slice().sort((a, b) => (a.boss - b.boss) || ((b.skull || 0) - (a.skull || 0)));
+  let secs;
+  if ((D.groups || []).length) {
+    const used = new Set();
+    secs = D.groups.map((g) => { const l = g.slugs.map(enemyBy).filter(Boolean); return [g.name, g.keep ? l : bySkull(l), g.note]; });
+    D.groups.forEach((g) => g.slugs.forEach((s) => used.add(s)));
+    const rest = D.enemies.filter((e) => !used.has(e.slug));
+    if (rest.length) secs.push([D.restTitle || 'Others', bySkull(rest)]);
+  } else {
+    secs = [['Bosses', D.enemies.filter((e) => e.boss)], ['Trash', bySkull(D.enemies.filter((e) => !e.boss)), D.skullNote]];
+  }
+  if ((D.groups || []).length && D.skullNote) add('gnote top', D.skullNote);
+  for (const [title, list, note] of secs) {
+    add('gsec', title);
+    if (note) add('gnote', note);
     for (const e of list) {
       const b = document.createElement('button'); b.className = 'cell' + (e.boss ? ' boss' : ''); b.dataset.beast = e.slug;
       b.innerHTML = `<img loading="lazy" alt="" src="thumbs/${ASSET}${e.slug}.webp">${e.skull ? `<i class="sk" aria-label="${e.skull} skull">${SKULL.repeat(e.skull)}</i>` : ''}<span>${esc(e.name)}</span>`;
@@ -444,6 +462,8 @@ async function openBeast(slug) {
   const card = $('#beastcard');
   let h = `<span class="tag ${e.boss ? 'boss' : ''}">${esc(e.type || (e.boss ? 'Boss' : 'Enemy'))}${e.level ? ' · Level ' + esc(e.level) : ''}</span><h2>${esc(e.name)}</h2>`;
   if (e.skull) h += `<div class="skull"><b>${SKULL.repeat(e.skull)}</b>${esc(e.why || '')}</div>`;
+  for (const n of (D.needs || []).filter((x) => x.from === e.slug)) h += `<div class="needline"><img alt="" src="icons/${n.icon}.png"><div><b>Roll need</b>${esc(n.name)}, ${esc(n.slot.toLowerCase())}</div></div>`;
+  if (e.packs) h += `<p class="packs">${esc(e.packs)}</p>`;
   if (e.where) h += `<p><b>Where:</b> ${esc(e.where)}</p>`;
   if (e.tank) h += `<div class="role">You, the tank</div><p>${esc(e.tank)}</p>`;
   if (e.group) h += `<div class="role">The group</div><p>${esc(e.group)}</p>`;

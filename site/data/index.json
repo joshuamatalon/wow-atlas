@@ -18,5 +18,10 @@
   "d": "blackfathom",
   "name": "Blackfathom Deeps",
   "short": "BFD"
+ },
+ {
+  "d": "dalaran",
+  "name": "City of Dalaran",
+  "short": "Dalaran"
  }
 ]

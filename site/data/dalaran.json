@@ -1,0 +1,787 @@
+{
+ "dungeon": {
+  "name": "City of Dalaran"
+ },
+ "assets": "dal/",
+ "enemies": [
+  {
+   "slug": "kirin-tor-necromancer",
+   "name": "Kirin Tor Necromancer",
+   "boss": false,
+   "type": "Elite",
+   "level": "",
+   "abilities": [
+    {
+     "name": "Raise Dead",
+     "icon": 136187,
+     "line": "raises two Skeletons for 30 seconds.",
+     "spell": 1303266
+    },
+    {
+     "name": "Unholy Frenzy",
+     "icon": 136224,
+     "line": "speeds an ally's attacks for 20 seconds, and a magic dispel removes it.",
+     "spell": 1303264
+    }
+   ],
+   "npc": 269134,
+   "display": 145809,
+   "packs": "Three of them are around Atrexis, so kill two before you pull him.",
+   "skull": 3,
+   "why": "Kill it first, because it keeps raising Skeletons until it dies."
+  },
+  {
+   "slug": "skeleton",
+   "name": "Skeleton",
+   "boss": false,
+   "type": "Summoned",
+   "level": "",
+   "abilities": [],
+   "npc": 269133,
+   "display": 7846,
+   "plain": "Necromancers and both sewer bosses raise them two at a time, and they only swing in melee."
+  },
+  {
+   "slug": "dark-caster",
+   "name": "Dark Caster",
+   "boss": false,
+   "type": "Elite",
+   "level": "",
+   "abilities": [
+    {
+     "name": "Heal",
+     "icon": 135915,
+     "line": "is a short cast that heals an ally, so interrupt it.",
+     "spell": 1303227
+    },
+    {
+     "name": "Shadow Bolt",
+     "icon": 136197,
+     "line": "is a 3-second cast that hits one player from up to 40 yards.",
+     "spell": 1303228
+    }
+   ],
+   "npc": 255072,
+   "display": 7555,
+   "skull": 2,
+   "why": "Kill it after any Necromancer, because it heals the others."
+  },
+  {
+   "slug": "mindless-horror",
+   "name": "Mindless Horror",
+   "boss": false,
+   "type": "Elite",
+   "level": "",
+   "abilities": [
+    {
+     "name": "Terrify",
+     "icon": 132270,
+     "line": "makes one player run in fear for 4 seconds, and a magic dispel ends it.",
+     "spell": 7399
+    }
+   ],
+   "npc": 255068,
+   "display": 9786,
+   "skull": 1,
+   "why": "Kill it before the plain melee, because its fear sends a player into the next pack."
+  },
+  {
+   "slug": "fallen-mage",
+   "name": "Fallen Mage",
+   "boss": false,
+   "type": "Elite",
+   "level": "",
+   "abilities": [
+    {
+     "name": "Frostbolt",
+     "icon": 135846,
+     "line": "is a 3-second cast that slows one player for 4 seconds.",
+     "spell": 1303226
+    },
+    {
+     "name": "Frost Armor",
+     "icon": 135843,
+     "line": "slows anyone who hits it in melee, and a magic dispel strips it.",
+     "spell": 12544
+    }
+   ],
+   "npc": 255066,
+   "display": 9783,
+   "packs": "It pulls with Fallen Warriors, so use a corner.",
+   "skull": 1,
+   "why": "Kill it before the Fallen Warriors, because it casts from range."
+  },
+  {
+   "slug": "fallen-warrior",
+   "name": "Fallen Warrior",
+   "boss": false,
+   "type": "Elite",
+   "level": "",
+   "abilities": [
+    {
+     "name": "Hamstring",
+     "icon": 132316,
+     "line": "slows its target's movement by more than half for 10 seconds.",
+     "spell": 9080
+    }
+   ],
+   "npc": 255069,
+   "display": 200,
+   "packs": "It is found with Fallen Mages."
+  },
+  {
+   "slug": "skeletal-warder",
+   "name": "Skeletal Warder",
+   "boss": false,
+   "type": "Elite",
+   "level": "",
+   "abilities": [
+    {
+     "name": "Shield Slam",
+     "icon": 132357,
+     "line": "stuns its target for 2 seconds.",
+     "spell": 15655
+    },
+    {
+     "name": "Sunder Armor",
+     "icon": 132363,
+     "line": "cuts its target's armor, and it stacks five times.",
+     "spell": 15572
+    }
+   ],
+   "npc": 255070,
+   "display": 612
+  },
+  {
+   "slug": "risen-terror",
+   "name": "Risen Terror",
+   "boss": false,
+   "type": "Elite",
+   "level": "",
+   "abilities": [],
+   "npc": 255065,
+   "display": 11404,
+   "plain": "The game lists no ability for it."
+  },
+  {
+   "slug": "sewer-fiend",
+   "name": "Sewer Fiend",
+   "boss": false,
+   "type": "Normal",
+   "level": "",
+   "abilities": [
+    {
+     "name": "Fiend Fury",
+     "icon": 136224,
+     "line": "makes it hit harder and slower for 10 seconds.",
+     "spell": 3416
+    }
+   ],
+   "npc": 255071,
+   "display": 7550
+  },
+  {
+   "slug": "atrexis-the-grave-knight",
+   "name": "Atrexis the Grave Knight",
+   "boss": true,
+   "type": "Boss",
+   "level": "",
+   "abilities": [
+    {
+     "name": "Raise Dead",
+     "icon": 136187,
+     "line": "raises two Skeletons for 30 seconds.",
+     "spell": 1303266
+    },
+    {
+     "name": "Unholy Frenzy",
+     "icon": 136224,
+     "line": "speeds an ally's attacks by three quarters for 20 seconds, and a magic dispel removes it.",
+     "spell": 1303264
+    },
+    {
+     "name": "Disarm",
+     "icon": 132343,
+     "line": "takes its target's weapon away for 6 seconds.",
+     "spell": 6713
+    },
+    {
+     "name": "Thrash",
+     "icon": 132152,
+     "line": "gives it two extra attacks at once.",
+     "spell": 3391
+    },
+    {
+     "name": "Strike",
+     "icon": 132282,
+     "line": "is a heavy weapon hit on its target.",
+     "spell": 12057
+    }
+   ],
+   "npc": 247126,
+   "display": 145787,
+   "packs": "Three Kirin Tor Necromancers are around him, so kill two before the pull."
+  },
+  {
+   "slug": "lyn-the-ignored",
+   "name": "Lyn the Ignored",
+   "boss": true,
+   "type": "Hidden boss",
+   "level": "",
+   "abilities": [
+    {
+     "name": "Shadow Bolt Volley",
+     "icon": 136197,
+     "line": "hits every player within 30 yards with shadow.",
+     "spell": 17228
+    },
+    {
+     "name": "Curse of Thorns",
+     "icon": 136121,
+     "line": "is a short cast that makes its target's own attacks hurt them for 3 minutes, and a curse removal ends it.",
+     "spell": 1304473
+    },
+    {
+     "name": "Raise Dead",
+     "icon": 136187,
+     "line": "raises two Skeletons for 30 seconds.",
+     "spell": 1303266
+    }
+   ],
+   "npc": 247032,
+   "display": 130235,
+   "packs": "He appears when you use your Tome of Dalaran at the rune circle in the north sewer."
+  },
+  {
+   "slug": "mana-phantom",
+   "name": "Mana Phantom",
+   "boss": false,
+   "type": "Normal",
+   "level": "",
+   "abilities": [
+    {
+     "name": "Mana Burn",
+     "icon": 136170,
+     "line": "is a 3-second cast that burns a caster's mana and hurts them for it, so interrupt it.",
+     "spell": 11981
+    }
+   ],
+   "npc": 246683,
+   "display": 130112,
+   "packs": "Two of them are beside Arcanic Enigma at the pull.",
+   "skull": 3,
+   "why": "Kill it first, because its Mana Burn empties your healer."
+  },
+  {
+   "slug": "phantasm",
+   "name": "Phantasm",
+   "boss": false,
+   "type": "Elite",
+   "level": "",
+   "abilities": [
+    {
+     "name": "Reflection Field",
+     "icon": 132361,
+     "line": "turns spells cast at it and at its nearby allies back on the caster.",
+     "spell": 1303458
+    }
+   ],
+   "npc": 246990,
+   "display": 130218,
+   "skull": 2,
+   "why": "Kill it next, because your casters' spells bounce back while it lives."
+  },
+  {
+   "slug": "mana-stalker",
+   "name": "Mana Stalker",
+   "boss": false,
+   "type": "Elite",
+   "level": "",
+   "abilities": [
+    {
+     "name": "Frostbolt",
+     "icon": 135846,
+     "line": "is a 3-second cast that hits one player and slows them for 4 seconds.",
+     "spell": 20822
+    },
+    {
+     "name": "Frost Nova",
+     "icon": 135848,
+     "line": "roots everyone within 10 yards for up to 8 seconds.",
+     "spell": 11831
+    }
+   ],
+   "npc": 246993,
+   "display": 130220,
+   "skull": 1,
+   "why": "Kill it before the melee, because it roots everyone near it and casts from range."
+  },
+  {
+   "slug": "mana-echo",
+   "name": "Mana Echo",
+   "boss": false,
+   "type": "Elite",
+   "level": "",
+   "abilities": [
+    {
+     "name": "Chain Lightning",
+     "icon": 136015,
+     "line": "is a 3-second cast that arcs from its target to nearby players.",
+     "spell": 1303551
+    },
+    {
+     "name": "Blink",
+     "icon": 135736,
+     "line": "moves it 20 yards forward and frees it from roots.",
+     "spell": 14514
+    }
+   ],
+   "npc": 246600,
+   "display": 14272,
+   "skull": 1,
+   "why": "Kill it before the melee, because its lightning arcs through your group."
+  },
+  {
+   "slug": "arcane-elemental",
+   "name": "Arcane Elemental",
+   "boss": false,
+   "type": "Elite",
+   "level": "",
+   "abilities": [
+    {
+     "name": "Arcane Missiles",
+     "icon": 136096,
+     "line": "is a 6-second channel that hits one player each second.",
+     "spell": 1303499
+    }
+   ],
+   "npc": 246888,
+   "display": 130208
+  },
+  {
+   "slug": "mana-fiend",
+   "name": "Mana Fiend",
+   "boss": false,
+   "type": "Normal",
+   "level": "",
+   "abilities": [
+    {
+     "name": "Arcane Explosion",
+     "icon": 136116,
+     "line": "hits every player near it, and it goes off again when the fiend dies.",
+     "spell": 1242252
+    }
+   ],
+   "npc": 246602,
+   "display": 130072
+  },
+  {
+   "slug": "saturated-remnant",
+   "name": "Saturated Remnant",
+   "boss": false,
+   "type": "Elite",
+   "level": "",
+   "abilities": [
+    {
+     "name": "Mana Leak",
+     "icon": 132841,
+     "line": "leaves a pool where it dies that restores mana, so casters stand in it.",
+     "spell": 1303503
+    }
+   ],
+   "npc": 247001,
+   "display": 130223,
+   "packs": "It is found with Seeking Remnants, and your shield cannot block its arcane melee."
+  },
+  {
+   "slug": "seeking-remnant",
+   "name": "Seeking Remnant",
+   "boss": false,
+   "type": "Elite",
+   "level": "",
+   "abilities": [
+    {
+     "name": "Thrash",
+     "icon": 132152,
+     "line": "gives it two extra attacks at once.",
+     "spell": 3391
+    }
+   ],
+   "npc": 247003,
+   "display": 130224,
+   "packs": "It is found with Saturated Remnants."
+  },
+  {
+   "slug": "fragmented-sentry",
+   "name": "Fragmented Sentry",
+   "boss": false,
+   "type": "Elite",
+   "level": "",
+   "abilities": [
+    {
+     "name": "Arcing Smash",
+     "icon": 132338,
+     "line": "hits everyone in a cone in front of it.",
+     "spell": 8374
+    },
+    {
+     "name": "Thrash",
+     "icon": 132152,
+     "line": "gives it two extra attacks at once.",
+     "spell": 3391
+    }
+   ],
+   "npc": 246664,
+   "display": 130102
+  },
+  {
+   "slug": "arcane-echo",
+   "name": "Arcane Echo",
+   "boss": false,
+   "type": "Elite",
+   "level": "",
+   "abilities": [],
+   "npc": 246992,
+   "display": 130218,
+   "plain": "The game lists no ability for it."
+  },
+  {
+   "slug": "mana-wraith",
+   "name": "Mana Wraith",
+   "boss": false,
+   "type": "Elite",
+   "level": "",
+   "abilities": [],
+   "npc": 246931,
+   "display": 130220,
+   "plain": "The game lists no ability for it."
+  },
+  {
+   "slug": "arcane-anomaly",
+   "name": "Arcane Anomaly",
+   "boss": true,
+   "type": "Boss",
+   "level": "",
+   "abilities": [
+    {
+     "name": "Focal Blast",
+     "icon": 4667417,
+     "line": "is a 3-second cast, then a beam for 6 seconds that hits anyone it sweeps over, so stay out of its path.",
+     "spell": 1241501
+    },
+    {
+     "name": "Arcane Bolt",
+     "icon": 135753,
+     "line": "is a 2-second cast that hits one player from up to 40 yards.",
+     "spell": 1240682
+    }
+   ],
+   "npc": 245999,
+   "display": 129891,
+   "packs": "Small adds wait at the edge of his room, so fight him inside the circle."
+  },
+  {
+   "slug": "mana-devourer",
+   "name": "Mana Devourer",
+   "boss": true,
+   "type": "Boss",
+   "level": "",
+   "abilities": [
+    {
+     "name": "Debilitate",
+     "icon": 136130,
+     "line": "is a 2-second cast that drains mana from the players it hits.",
+     "spell": 1240750
+    },
+    {
+     "name": "Drain Vitality",
+     "icon": 132146,
+     "line": "hits its target and keeps burning for 10 seconds, and a magic dispel removes it.",
+     "spell": 1240738
+    }
+   ],
+   "npc": 246008,
+   "display": 129895,
+   "packs": "Any trash left in his area joins the fight, so clear it first."
+  },
+  {
+   "slug": "fel-ancient",
+   "name": "Fel Ancient",
+   "boss": true,
+   "type": "Boss",
+   "level": "",
+   "abilities": [
+    {
+     "name": "Fel Timbers",
+     "icon": 132318,
+     "line": "sends vines at one player that hit everyone within 5 yards of them, so step away from that spot.",
+     "spell": 1240692
+    },
+    {
+     "name": "Entangle",
+     "icon": 136100,
+     "line": "roots nearby players for up to 6 seconds, and a magic dispel frees them.",
+     "spell": 1240688
+    },
+    {
+     "name": "Trample",
+     "icon": 136063,
+     "line": "hits every player near it.",
+     "spell": 1240687
+    }
+   ],
+   "npc": 246003,
+   "display": 129894,
+   "packs": "Suffused Treants stand in front of it behind a barrier."
+  },
+  {
+   "slug": "suffused-treant",
+   "name": "Suffused Treant",
+   "boss": false,
+   "type": "Elite",
+   "level": "",
+   "abilities": [],
+   "npc": 247016,
+   "display": 130229,
+   "plain": "It stands in front of the Fel Ancient, and the game lists no ability for it."
+  },
+  {
+   "slug": "unstable-sentinel",
+   "name": "Unstable Sentinel",
+   "boss": true,
+   "type": "Boss",
+   "level": "",
+   "abilities": [
+    {
+     "name": "Malfunction",
+     "icon": 135735,
+     "line": "is a 2-second wind-up, then arcane blasts around it for 6 seconds, so step away.",
+     "spell": 1241329
+    },
+    {
+     "name": "Arcing Smash",
+     "icon": 132338,
+     "line": "hits everyone in a cone in front of it.",
+     "spell": 16169
+    }
+   ],
+   "npc": 246017,
+   "display": 129954,
+   "packs": "Angry Tomes come out of the buildings as you walk up, so kill them first."
+  },
+  {
+   "slug": "angry-tome",
+   "name": "Angry Tome",
+   "boss": false,
+   "type": "Normal",
+   "level": "",
+   "abilities": [],
+   "npc": 254856,
+   "display": 138487,
+   "plain": "It comes out of the buildings near the Unstable Sentinel, and the game lists no ability for it."
+  },
+  {
+   "slug": "arcanic-enigma",
+   "name": "Arcanic Enigma",
+   "boss": true,
+   "type": "Boss",
+   "level": "",
+   "abilities": [
+    {
+     "name": "Silence",
+     "icon": 135975,
+     "line": "is a short cast that silences players near it for 10 seconds, and a magic dispel ends it.",
+     "spell": 8988
+    },
+    {
+     "name": "Manamorph",
+     "icon": 136116,
+     "line": "is a short cast that turns one player into an animal for 8 seconds, and a magic dispel ends it.",
+     "spell": 1240869
+    },
+    {
+     "name": "Summon Manaling",
+     "icon": 135933,
+     "line": "calls two Arcane Manalings for 30 seconds.",
+     "spell": 1304455
+    }
+   ],
+   "npc": 246016,
+   "display": 129900,
+   "packs": "Two Mana Phantoms are beside it at the pull, and they die first."
+  },
+  {
+   "slug": "arcane-manaling",
+   "name": "Arcane Manaling",
+   "boss": false,
+   "type": "Summoned",
+   "level": "",
+   "abilities": [],
+   "npc": 246890,
+   "display": 130209,
+   "plain": "Arcanic Enigma calls them two at a time, and they only swing in melee."
+  },
+  {
+   "slug": "shade-of-the-archmage",
+   "name": "Shade of the Archmage",
+   "boss": true,
+   "type": "Boss",
+   "level": "",
+   "abilities": [
+    {
+     "name": "Arcane Bolt",
+     "icon": 136096,
+     "line": "is a short cast that hits one player from up to 40 yards.",
+     "spell": 1241506
+    },
+    {
+     "name": "Bounding Mana",
+     "icon": 236222,
+     "line": "is a 2-second cast that throws a bolt at one player and hits anyone in its path.",
+     "spell": 1241515
+    },
+    {
+     "name": "Arcane Explosion",
+     "icon": 136116,
+     "line": "hits every player near him.",
+     "spell": 1304398
+    },
+    {
+     "name": "Mass Polymorph",
+     "icon": 575586,
+     "line": "is a short cast that turns nearby players into animals for 8 seconds, and a magic dispel ends it.",
+     "spell": 1303598
+    },
+    {
+     "name": "Evocation",
+     "icon": 136075,
+     "line": "is a 6-second channel that refills his mana.",
+     "spell": 1303599
+    }
+   ],
+   "npc": 246020,
+   "display": 130061,
+   "packs": "He resets if he leaves his room."
+  },
+  {
+   "slug": "archmage-modera",
+   "name": "Archmage Modera",
+   "boss": false,
+   "type": "Friendly",
+   "level": "",
+   "abilities": [],
+   "npc": 246748,
+   "display": 130165,
+   "plain": "She opens the portal to the last boss."
+  }
+ ],
+ "groups": [
+  {
+   "name": "The sewers",
+   "note": "Undead fill the sewers, and two bosses wait at the end of them.",
+   "slugs": [
+    "kirin-tor-necromancer",
+    "dark-caster",
+    "mindless-horror",
+    "fallen-mage",
+    "fallen-warrior",
+    "skeletal-warder",
+    "risen-terror",
+    "sewer-fiend",
+    "skeleton",
+    "atrexis-the-grave-knight",
+    "lyn-the-ignored"
+   ]
+  },
+  {
+   "name": "The streets",
+   "note": "Arcane spells do nothing to most enemies up here, and your shield blocks little of their melee.",
+   "slugs": [
+    "mana-phantom",
+    "phantasm",
+    "mana-stalker",
+    "mana-echo",
+    "arcane-elemental",
+    "mana-fiend",
+    "saturated-remnant",
+    "seeking-remnant",
+    "fragmented-sentry",
+    "arcane-echo",
+    "mana-wraith"
+   ]
+  },
+  {
+   "name": "The city bosses and their company",
+   "keep": true,
+   "slugs": [
+    "arcane-anomaly",
+    "mana-devourer",
+    "fel-ancient",
+    "suffused-treant",
+    "unstable-sentinel",
+    "angry-tome",
+    "arcanic-enigma",
+    "arcane-manaling",
+    "shade-of-the-archmage"
+   ]
+  },
+  {
+   "name": "Friends",
+   "slugs": [
+    "archmage-modera"
+   ]
+  }
+ ],
+ "needs": [
+  {
+   "item": 273055,
+   "name": "Bonepile Gaze",
+   "icon": 134948,
+   "slot": "Shield",
+   "from": "lyn-the-ignored",
+   "where": "Lyn the Ignored, 2 of 5 kills"
+  },
+  {
+   "item": 286995,
+   "name": "Guardian's Emblem",
+   "icon": 135733,
+   "slot": "Neck",
+   "from": null,
+   "where": "any enemy, binds when worn"
+  },
+  {
+   "item": 286996,
+   "name": "City Guard's Tarnished Blade",
+   "icon": 135324,
+   "slot": "One-hand sword",
+   "from": null,
+   "where": "any enemy, binds when worn"
+  },
+  {
+   "item": 286992,
+   "name": "Construct's Grips",
+   "icon": 132938,
+   "slot": "Hands",
+   "from": null,
+   "where": "any enemy, binds when worn"
+  },
+  {
+   "item": 273035,
+   "name": "Mana-Warped Chain Shirt",
+   "icon": 132626,
+   "slot": "Chest",
+   "from": "arcane-anomaly",
+   "where": "Arcane Anomaly, 3 of 12 kills"
+  },
+  {
+   "item": 273032,
+   "name": "Bonebinder's Signet",
+   "icon": 133370,
+   "slot": "Ring",
+   "from": "atrexis-the-grave-knight",
+   "where": "Atrexis the Grave Knight, 6 of 13 kills"
+  }
+ ],
+ "needTitle": "Roll need, biggest gain first",
+ "skullNote": "The skulls show the kill order in a pull. More skulls die first, and no skull dies last."
+}

@@ -1,0 +1,3 @@
+*|--drop=EyeGlowB1 --dropmat=genericglow64,t_vfx_fire_anim02_128_full_desat,druidcateyeglow
+mana-fiend|--drop=Geoset3,Geoset4
+mana-devourer|--drop=Geoset3
