@@ -139,6 +139,34 @@ opens with the current dungeon in sight; the labels are Ruins, Deadmines, SFK an
 A card with no ability rows prints "It only swings in melee." unless the data gives `plain`; Razorclaw the Butcher and
 the friendly NPCs now carry their own `plain` lines.
 
+## City of Dalaran: need list, sections and skulls (2026-11-26)
+Live at https://joshuamatalon.github.io/wow-atlas/?d=dalaran, built in `work/dal` with assets in `dal/`. He asked for a
+need list at the top, the bestiary ordered by skulls, and skulls that rest on which enemies fight together.
+`work/dal/ledger.md` names the source of every fact; read it before changing a line.
+
+New data fields, all optional, so the older dungeons are unchanged:
+- `needs` (item, name, icon, slot, from, where) draws the "Roll need" rows above everything. A row with `from` opens
+  that enemy's card, and that card shows the item under its name. `needTitle` is the heading.
+- `groups` (name, note, slugs, keep) replaces the Bosses and Trash sections. Each group is a set of enemies that can
+  share a pull; tiles sort by skulls with bosses last, unless `keep` holds the data order.
+- `packs` is one sentence on a card about who stands with that enemy.
+
+What the build holds: 32 creatures (27 plain models, 5 dressed), six need rows, four sections, eight skull marks.
+The need list is `gear_sources.py` against his worn gear, so it goes stale as he gears; rerun it and edit `NEEDS` in
+`tools/make_dalaran.py`. Item icons come from `tools/cmd/fileicons.js`. `opt_creature.mjs` gained `--dropmat`, which
+drops every mesh drawn with a named material (glow and fire cards).
+
+These items stay open for the City of Dalaran.
+- Exact pulls are NOT known. Sections come from four written guides, and two pairings are inferred from a guide's
+  headings. A run video would settle it, and every way to read one failed here (see the ledger). His first run will
+  settle it better: read Scribe `fights` for the enemies in each fight, then correct `GROUPS`, `packs` and `SKULLS`.
+- Wowhead has no levels for these creatures, so the cards show none.
+- Kirin Tor Wizard and Shimmering Outline are exported but have no card, because their role is not known.
+- Phantasm and Arcane Echo draw nearly black, because their skin is a dark starfield and the glow cards are dropped.
+- Mana Wraith is a boss in ForeverDB's list with no recorded kill; here it is an elite with no ability.
+- wow.export hung once at start (commands sat unread for ten minutes). Killing every `wow.export` process and
+  starting it again fixed it; send `probe.js` with a short timeout before `load.js`.
+
 These items stay open for Shadowfang Keep.
 - The "rows above Dazed" rule failed on two pages. Archmage Arugal's list holds player debuffs (Faerie Fire, Hunter's
   Mark, Judgements), so his card keeps only Void Bolt, Arugal's Curse and Thundershock by judgement. Slavering Worg's
